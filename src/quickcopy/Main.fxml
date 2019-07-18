@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="background:main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="858.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.MainController">
+   <children>
+      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false" />
+      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TabPane prefHeight="503.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="                                                  Sent                                                  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="                                            Received                                            ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+      <AnchorPane id="Welcome" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <Label layoutX="246.0" layoutY="48.0" text="Welcome" textFill="#000000dc">
+               <font>
+                  <Font name="Century Gothic" size="50.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-networking-manager-96.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="295.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-multiple-devices-128.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="68.0" layoutY="379.0" text="Send &amp; recieve">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="406.0" text=" files easily">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="321.0" layoutY="379.0" text="Works across">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="309.0" layoutY="409.0" text="multiple devices">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="516.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-quick-mode-on-100.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="535.0" layoutY="409.0" text="Fully encrypted">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="587.0" layoutY="398.0" text="&amp;">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="537.0" layoutY="377.0" text="Lightning fast">
+               <font>
+                  <Font name="Calibri" size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-shutdown-64.png" />
+               </image>
+            </ImageView>
+            <CheckBox layoutX="109.0" layoutY="92.0" mnemonicParsing="false" text="Visible">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="109.0" layoutY="134.0" text="Displayed Device Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="429.0" layoutY="134.0" />
+            <Button layoutX="342.0" layoutY="439.0" mnemonicParsing="false" style="-fx-background-color: #0f9d58;" text="Save" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children></AnchorPane>
+      <ImageView id="scanner_logo" fitHeight="61.0" fitWidth="61.0" layoutX="29.0" layoutY="63.0" onMousePressed="#Scan" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50%;">
+         <image>
+            <Image url="@images/icons8-radar-50.png" />
+         </image>
+      </ImageView>
+      <ImageView id="packet_logo" fitHeight="61.0" fitWidth="54.0" layoutX="34.0" layoutY="135.0" onMousePressed="#PackMan" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 45%;">
+         <image>
+            <Image url="@images/icons8-cardboard-box-50.png" />
+         </image>
+      </ImageView>
+      <ImageView id="settings_logo" fitHeight="69.0" fitWidth="54.0" layoutX="35.0" layoutY="433.0" onMousePressed="#Settings" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 30%;">
+         <image>
+            <Image url="@images/Settings.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="15.0" layoutY="14.0" text="QuickCopy" textFill="#252f39">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="18.0" layoutY="48.0" prefHeight="3.0" prefWidth="86.0" style="-fx-opacity: 30%; -fx-background-color: #263238;" />
+      <Ellipse id="selectorontop" fill="WHITE" layoutX="121.0" layoutY="101.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
+      <Ellipse fx:id="selectoronmiddle" fill="WHITE" layoutX="121.0" layoutY="168.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
+      <Ellipse id="selectoronbottom" fill="WHITE" layoutX="120.0" layoutY="466.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
+   </children>
+</AnchorPane>

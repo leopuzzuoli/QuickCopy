@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="663.0" layoutY="30.0" mnemonicParsing="false" text="X" />
+      <ProgressBar layoutX="17.0" layoutY="57.0" prefHeight="6.0" prefWidth="635.0" progress="0.0" />
+      <Label layoutX="17.0" layoutY="63.0" text="23 kb / 40 kb" />
+      <ImageView fitHeight="42.0" fitWidth="48.0" layoutX="13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-cardboard-box-50.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="279.0" layoutY="23.0" text="NAME OF PACKAGE" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="577.0" layoutY="42.0" text="by SuchAnd Such" textFill="#000000cd">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
