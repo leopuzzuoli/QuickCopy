@@ -12,15 +12,16 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Ellipse;
@@ -43,6 +44,7 @@ public class MainController implements Initializable {
     static int myport = 4446;
     Ellipse topselector, middleselector, bottomselector;
     AnchorPane settingspane, scannerpane, packpane, welcome_pane;
+    ListView listview;
     long timesince = 0;
     static private List<Connection> connections = new ArrayList<>();
 
@@ -51,17 +53,37 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try{
         //get IP and Hostname to use as name
-        InetAddress inetAddress = InetAddress.getLocalHost();
-        myIP = inetAddress.getHostAddress();
-        myname = inetAddress.getHostName();
+        try {
+            List<String> addresses = new ArrayList<>();
+            //enumerate through multiple Network Interfaces
+            Enumeration Interfaces = NetworkInterface.getNetworkInterfaces();
+            //gather all IPs
+            while (Interfaces.hasMoreElements()) {
+                NetworkInterface Interface = (NetworkInterface) Interfaces.nextElement();
+                Enumeration Addresses = Interface.getInetAddresses();
+                while (Addresses.hasMoreElements()) {
+                    InetAddress Address = (InetAddress) Addresses.nextElement();
+                    //add to address list
+                    addresses.add(Address.getHostAddress());
+                }
+            }
+            
+            for (String temp : addresses){
+                //if address is correct one
+                if(temp.startsWith("192.168")){
+                    //set it as my ip
+                    myIP = temp;
+                    break;
+                }
+            }
+            
+        } catch (SocketException e) {
+            System.out.println("Could not enumerate NI: " + e.toString());
+        }
+        
         server.setIP(myIP);
         server.setHostname(myname);
-        }
-        catch(UnknownHostException e){
-            System.out.println("UNKNOWN LOCALHOST : " + e.toString());
-        }
         server.start();
         TCPServer.start();
         server.setPort(myport);
@@ -79,7 +101,7 @@ public class MainController implements Initializable {
         packpane.setVisible(false);
         settingspane.setVisible(false);
         welcome_pane.setVisible(false);
-                
+
         //if Scan has been a long time ago or never happened
         if (timesince < (10 * 60) && timesince != 0) {
             displayNodes();
@@ -200,15 +222,36 @@ public class MainController implements Initializable {
         scannerpane = (AnchorPane) scene.lookup("#scanner");
         packpane = (AnchorPane) scene.lookup("#packets");
         welcome_pane = (AnchorPane) scene.lookup("#Welcome");
-
+        
+        listview = (ListView) scene.lookup("#listview");
+        
+        drawConnections();
     }
-    
-    public static void addConnection(Connection conn){
+
+    public static void addConnection(Connection conn) {
         connections.add(conn);
         System.out.println("connection added");
     }
-    
-    public static void setMyPort(int port){
+
+    public static void setMyPort(int port) {
         myport = port;
+    }
+    
+    @FXML
+    private void drawConnections(){
+        //draw connections book
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("scancontrol.fxml"));
+
+        try{
+        AnchorPane connectionpane = (AnchorPane) loader.load();
+        
+        listview.getItems().add(connectionpane);
+        listview.getItems().add(connectionpane);
+        listview.getItems().add(connectionpane);
+        }
+        catch(Exception e){
+        System.out.println(e.toString());
+        }
     }
 }

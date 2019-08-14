@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="533.0" style="-fx-background-color: #909090;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="675.0" style="-fx-background-color: #f2f2f2#f2f2f2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="21.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/user.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="126.0" layoutY="22.0" text="Device Name Goes Here">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutY="102.0" prefHeight="10.0" prefWidth="675.0" style="-fx-background-color: #909090;" />
+      <Label layoutX="559.0" layoutY="76.0" text="192.168.2.103" textFill="#3c3c3cc7">
+         <font>
+            <Font name="Courier Oblique" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -3,9 +3,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +21,31 @@
 
 <AnchorPane id="background:main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="858.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.MainController">
    <children>
-      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false" />
-      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false" />
+      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #000000;">
+         <children>
+            <ScrollPane prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #000000;">
+               <content>
+                  <ListView fx:id="listview" prefHeight="562.0" prefWidth="720.0" style="-fx-background-color: #505050;" />
+               </content>
+            </ScrollPane>
+         </children></AnchorPane>
+      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <TabPane prefHeight="503.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="                                                  Sent                                                  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="                                            Received                                            ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
       <AnchorPane id="Welcome" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Label layoutX="246.0" layoutY="48.0" text="Welcome" textFill="#000000dc">
@@ -74,7 +104,7 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -100,7 +130,22 @@
                   <Glow />
                </effect>
             </Button>
-         </children></AnchorPane>
+            <SplitMenuButton id="Home_dropdown" fx:id="home_dropdown" layoutX="429.0" layoutY="174.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" text="Welcome">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <effect>
+                  <MotionBlur radius="0.07" />
+               </effect>
+            </SplitMenuButton>
+            <Label layoutX="109.0" layoutY="174.0" text="Home">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <ImageView id="scanner_logo" fitHeight="61.0" fitWidth="61.0" layoutX="29.0" layoutY="63.0" onMousePressed="#Scan" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50%;">
          <image>
             <Image url="@images/icons8-radar-50.png" />

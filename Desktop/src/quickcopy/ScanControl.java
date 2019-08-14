@@ -7,14 +7,18 @@ package quickcopy;
 
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import javafx.fxml.FXML;
+
 /**
  *
  * @author Chipleo
  */
-public class ScanControl{
+
+public class ScanControl {
+
     public ScanControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-"scancontrol.fxml"));
+                "scancontrol.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
