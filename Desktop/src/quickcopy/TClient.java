@@ -33,15 +33,8 @@ public class TClient {
     }
 
     public String sendMessage(String msg) {
-        try {
             out.println(msg);
-            String resp = in.readLine();
-            return resp;
-        } catch (IOException e) {
-            System.out.println("Error in TClient: " + e.toString());
-            //error pront if sent is no resp
-            return "No resp";
-        }
+            return "Sent";
     }
 
     public void stopConnection() {

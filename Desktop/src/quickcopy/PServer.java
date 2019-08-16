@@ -10,6 +10,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +24,7 @@ public class PServer extends Thread {
     private byte[] buf = new byte[256];
 
     private String myname = "QuickCopy";
-    private String myIP;
+    private List<String> myIPs = new ArrayList<>();
     private int myPort;
 
     public PServer() {
@@ -71,8 +73,11 @@ public class PServer extends Thread {
                 //respond
                 TClient tc = new TClient();
                 tc.startConnection(connfound.getAddr(), connfound.getPort());
-                System.out.println("-> QC responding from " + myIP + ":" + myPort+":" + myname);
-                tc.sendMessage("QC responding from " + myIP + ":" + myPort+":" + myname);
+                //respond with all IPs
+                for(String addr : myIPs){
+                System.out.println("-> QC responding from " + addr + ":" + myPort+":" + myname);
+                System.out.println(tc.sendMessage("QC responding from " + addr + ":" + myPort+":" + myname));
+                }
                 tc.stopConnection();
 
                 //add to conns
@@ -80,11 +85,11 @@ public class PServer extends Thread {
 
             }
 
-            try {
+            /*try {
                 socket.send(packet);
             } catch (IOException e) {
                 System.out.println("IOException at socket.send: " + e.toString());
-            }
+            }*/
         }
         System.out.println("UDP Listener stopped");
         socket.close();
@@ -94,8 +99,8 @@ public class PServer extends Thread {
         running = false;
     }
     
-    public void setIP(String ip){
-        myIP = ip;
+    public void setIP(List<String> ip){
+        myIPs = ip;
     }
     
     public void setPort(int port){
