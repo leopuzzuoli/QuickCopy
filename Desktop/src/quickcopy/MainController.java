@@ -18,6 +18,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Ellipse;
+import quickcopy.Themes.Default;
+import quickcopy.Themes.Circles;
+import quickcopy.Themes.modern;
 
 /**
  * FXML Controller class
@@ -47,14 +51,29 @@ public class MainController implements Initializable {
     AnchorPane settingspane, scannerpane, packpane, welcome_pane;
     ListView listview;
     long timesince = 0;
+    public ThemeInterface theme;
     static private List<Connection> connections = new ArrayList<>();
+    Preferences prefs = Preferences.userNodeForPackage(quickcopy.MainController.class);
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //select theme
+        //get theme
+        String theme_selector = prefs.get("theme", "default");
+        
+        //choose correct one
+        switch(theme_selector){
+            case "modern 2d":   theme = new modern("2d"); break;
+            case "modern 3d":   theme = new modern("3d"); break;
+            case "circles" : theme = new Circles(); break;
+            default: 
+                theme = new Default();
+                break;
+                
+        }
         //get all IP addresses
         try {
             //list of addresses
@@ -112,8 +131,9 @@ public class MainController implements Initializable {
 
         //if Scan has been a long time ago or never happened
         if (timesince < (10 * 60) && timesince != 0) {
-            displayNodes();
+            drawConnections();
         } else {
+            connections.clear();
             //Find All Broadcast Addresses
             System.out.println("STARTING QUERY");
             timesince = System.nanoTime() / 1000000000 - timesince;
@@ -219,10 +239,6 @@ public class MainController implements Initializable {
         System.exit(0);
     }
 
-    private void displayNodes() {
-
-    }
-
     public void sendScene(Scene scene_l) {
         scene = scene_l;
         //get all interactables
@@ -242,8 +258,18 @@ public class MainController implements Initializable {
     }
 
     public static void addConnection(Connection conn) {
+        boolean _found = false;
+        for (int i = 0; i < connections.size(); i++) {
+            if(connections.get(i).getAddr().equals(conn.getAddr())){
+                _found = true;
+                break;
+            }
+        }
+        if(! _found){
         connections.add(conn);
         System.out.println("connection added");
+        }
+        
     }
 
     public static void setMyPort(int port) {
@@ -253,6 +279,7 @@ public class MainController implements Initializable {
     @FXML
     private void drawConnections() {
         //draw connections book
+        /*
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("scancontrol.fxml"));
 
@@ -264,6 +291,7 @@ public class MainController implements Initializable {
             listview.getItems().add(connectionpane);
         } catch (Exception e) {
             System.out.println(e.toString());
-        }
+        }*/
+        theme.draw(connections);
     }
 }

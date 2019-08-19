@@ -62,7 +62,7 @@ public class TServer extends Thread {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String received = in.readLine();
                 //if recieved is reply to scan
-                System.out.println("<- : " +received);
+                System.out.println("<- " +received);
                 if (received.startsWith("QC responding from ")) {
                     //add connection
                     String[] i_i = received.split("QC responding from ");

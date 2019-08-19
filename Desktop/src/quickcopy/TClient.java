@@ -32,9 +32,9 @@ public class TClient {
         }
     }
 
-    public String sendMessage(String msg) {
+    public void sendMessage(String msg) {
             out.println(msg);
-            return "Sent";
+       
     }
 
     public void stopConnection() {

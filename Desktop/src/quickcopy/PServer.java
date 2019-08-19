@@ -57,7 +57,7 @@ public class PServer extends Thread {
             String received
                     = new String(packet.getData(), 0, packet.getLength());
 
-            System.out.println("<- : " + received);
+            System.out.println("<- " + received);
             //Check if recieved conenction is from a QC Client
             if (received.startsWith("QC at ")) {
                 //if yes extract information, respond, add to conenctions (for passive discovery)
@@ -76,7 +76,7 @@ public class PServer extends Thread {
                 //respond with all IPs
                 for(String addr : myIPs){
                 System.out.println("-> QC responding from " + addr + ":" + myPort+":" + myname);
-                System.out.println(tc.sendMessage("QC responding from " + addr + ":" + myPort+":" + myname));
+                tc.sendMessage("QC responding from " + addr + ":" + myPort+":" + myname);
                 }
                 tc.stopConnection();
 
