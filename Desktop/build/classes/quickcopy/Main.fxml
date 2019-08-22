@@ -19,34 +19,18 @@
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="background:main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="858.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.MainController">
+<AnchorPane id="background:main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="893.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.MainController">
    <children>
-      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #000000;">
+      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #000000;">
          <children>
-            <ScrollPane prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #000000;">
+            <ScrollPane prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #000000;" visible="false">
                <content>
-                  <ListView fx:id="listview" prefHeight="562.0" prefWidth="720.0" style="-fx-background-color: #505050;" />
+                  <ListView fx:id="listview" prefHeight="562.0" prefWidth="756.0" style="-fx-background-color: #505050;" />
                </content>
             </ScrollPane>
          </children></AnchorPane>
-      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
-         <children>
-            <TabPane prefHeight="503.0" prefWidth="738.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="                                                  Sent                                                  ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="                                            Received                                            ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-         </children></AnchorPane>
-      <AnchorPane id="Welcome" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" />
+      <AnchorPane id="Welcome" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Label layoutX="246.0" layoutY="48.0" text="Welcome" textFill="#000000dc">
                <font>
@@ -104,7 +88,24 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="738.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane id="traffic" layoutX="122.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <TabPane prefHeight="503.0" prefWidth="772.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="                                                     Sent                                                     ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="                                               Received                                               ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -170,5 +171,11 @@
       <Ellipse id="selectorontop" fill="WHITE" layoutX="121.0" layoutY="101.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
       <Ellipse fx:id="selectoronmiddle" fill="WHITE" layoutX="121.0" layoutY="168.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
       <Ellipse id="selectoronbottom" fill="WHITE" layoutX="120.0" layoutY="466.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
+      <ImageView id="packet_logo" fitHeight="61.0" fitWidth="54.0" layoutX="34.0" layoutY="198.0" onMousePressed="#Traffic" pickOnBounds="true" preserveRatio="true" rotate="-45.0" style="-fx-opacity: 45%;">
+         <image>
+            <Image url="@images/icons8-left-and-right-arrows-96.png" />
+         </image>
+      </ImageView>
+      <Ellipse id="trafficselector" fx:id="selectoronmiddle1" fill="WHITE" layoutX="121.0" layoutY="223.0" radiusX="14.0" radiusY="27.0" stroke="WHITE" strokeType="INSIDE" style="-fx-opacity: 70%;" visible="false" />
    </children>
 </AnchorPane>

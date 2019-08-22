@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/TClient.java</file>
+            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/Main.fxml</file>
             <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/QuickCopy.java</file>
+            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/PackageManagerController.java</file>
             <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/Connection.java</file>
+            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/bar.java</file>
             <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/scancontrol.fxml</file>
+            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/barController.java</file>
             <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/MainController.java</file>
-            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/PServer.java</file>
-            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/TServer.java</file>
+            <file>file:/E:/Documents/Programming/Java/QuickCopy/Desktop/src/quickcopy/Package.java</file>
         </group>
     </open-files>
 </project-private>

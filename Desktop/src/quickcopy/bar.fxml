@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="bar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="647.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label id="bar_date" layoutX="535.0" layoutY="13.0" prefHeight="27.0" prefWidth="115.0" text="23.01.2006" textFill="#b7b7b7">
+         <font>
+            <Font name="Calibri Light" size="18.0" />
+         </font>
+      </Label>
+      <Label id="bar_to" layoutX="25.0" layoutY="13.0" text="TO: Josh" textFill="#959595">
+         <font>
+            <Font name="Calibri Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <TextField id="bat_title" layoutX="98.0" layoutY="14.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #888787;" text="Title goes here">
+         <font>
+            <Font name="Calibri Italic" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="308.0" layoutY="34.0" rotate="-90.0" text="&lt;" textFill="#959595">
+         <font>
+            <Font name="AirbusISIS" size="21.0" />
+         </font>
+      </Label>
+      <Button id="bar_open" layoutX="299.0" layoutY="34.0" mnemonicParsing="false" opacity="0.0" prefHeight="4.0" prefWidth="28.0" />
+      <Rectangle id="bar_shape" arcHeight="29.0" arcWidth="33.0" fill="#ffffff00" height="55.0" stroke="#b5b5b5" strokeType="INSIDE" width="647.0" />
+   </children>
+</Pane>

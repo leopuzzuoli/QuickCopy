@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Ellipse;
@@ -47,8 +48,8 @@ public class MainController implements Initializable {
     private List<String> myIPs = new ArrayList<>();
     String myname = "QuickCopy";
     static int myport = 4446;
-    Ellipse topselector, middleselector, bottomselector;
-    AnchorPane settingspane, scannerpane, packpane, welcome_pane;
+    Ellipse topselector, middleselector, bottomselector, trafficselector;
+    AnchorPane settingspane, scannerpane, packpane, welcome_pane, trafficpane;
     ListView listview;
     long timesince = 0;
     public ThemeInterface theme;
@@ -123,11 +124,13 @@ public class MainController implements Initializable {
         topselector.setVisible(true);
         middleselector.setVisible(false);
         bottomselector.setVisible(false);
+        trafficselector.setVisible(false);
 
         scannerpane.setVisible(true);
         packpane.setVisible(false);
         settingspane.setVisible(false);
         welcome_pane.setVisible(false);
+        trafficpane.setVisible(false);
 
         //if Scan has been a long time ago or never happened
         if (timesince < (10 * 60) && timesince != 0) {
@@ -200,11 +203,13 @@ public class MainController implements Initializable {
         topselector.setVisible(false);
         middleselector.setVisible(true);
         bottomselector.setVisible(false);
+        trafficselector.setVisible(false);
 
         scannerpane.setVisible(false);
         packpane.setVisible(true);
         settingspane.setVisible(false);
         welcome_pane.setVisible(false);
+        trafficpane.setVisible(false);
     }
 
     @FXML
@@ -212,11 +217,27 @@ public class MainController implements Initializable {
         topselector.setVisible(false);
         middleselector.setVisible(false);
         bottomselector.setVisible(true);
+        trafficselector.setVisible(false);
 
         scannerpane.setVisible(false);
         packpane.setVisible(false);
         settingspane.setVisible(true);
         welcome_pane.setVisible(false);
+        trafficpane.setVisible(false);
+    }
+    
+    @FXML
+    private void Traffic(MouseEvent event) {
+        topselector.setVisible(false);
+        middleselector.setVisible(false);
+        bottomselector.setVisible(false);
+        trafficselector.setVisible(true);
+
+        scannerpane.setVisible(false);
+        packpane.setVisible(false);
+        settingspane.setVisible(false);
+        welcome_pane.setVisible(false);
+        trafficpane.setVisible(true);
     }
 
     @FXML
@@ -246,14 +267,17 @@ public class MainController implements Initializable {
         topselector = (Ellipse) scene.lookup("#selectorontop");
         middleselector = (Ellipse) scene.lookup("#selectoronmiddle");
         bottomselector = (Ellipse) scene.lookup("#selectoronbottom");
+        trafficselector = (Ellipse) scene.lookup("#trafficselector");
 
         settingspane = (AnchorPane) scene.lookup("#settings");
         scannerpane = (AnchorPane) scene.lookup("#scanner");
         packpane = (AnchorPane) scene.lookup("#packets");
         welcome_pane = (AnchorPane) scene.lookup("#Welcome");
+        trafficpane = (AnchorPane) scene.lookup("#traffic");
 
         listview = (ListView) scene.lookup("#listview");
 
+        setdrawPackages();
         drawConnections();
     }
 
@@ -293,5 +317,31 @@ public class MainController implements Initializable {
             System.out.println(e.toString());
         }*/
         theme.draw(connections);
+    }
+    
+    @FXML
+    private void setdrawPackages(){
+        boolean darkmode = false;
+        //draw PackMan
+        FXMLLoader loader = new FXMLLoader();
+        //if darkmode, then load the darkmode version
+        /*if(darkmode){
+            loader.setLocation(getClass().getResource("package_dark.fxml"));
+        }
+        else{
+            */
+        loader.setLocation(getClass().getResource("/quickcopy/package.fxml"));
+       // }
+        
+        try{
+        ScrollPane showBoxes = (ScrollPane)loader.load();
+        packpane.getChildren().add(showBoxes);
+        //send scene so PMC can add to VBox
+   //     PackageManagerController controller = (PackageManagerController)loader.getController();
+     //   controller.sendScene(scene);
+    }
+        catch(Exception e){
+            System.out.println("The boxes screen failed to load: " + e.toString());
+        }
     }
 }
