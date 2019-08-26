@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="644.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.openbarController">
+   <children>
+      <ImageView fitHeight="167.0" fitWidth="656.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../UI%20Designs/bar_opened.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="34.0" arcWidth="34.0" fill="#1f93ff00" height="164.0" stroke="#b5b5b5" strokeType="INSIDE" width="644.0" />
+      <Label id="bar_date" layoutX="30.0" layoutY="46.0" prefHeight="17.0" prefWidth="111.0" text="23.01.2006 / 16:30" textFill="#b7b7b7">
+         <font>
+            <Font name="Calibri Light" size="12.5" />
+         </font>
+      </Label>
+      <Label id="bar_to" layoutX="30.0" layoutY="19.0" text="TO: Josh" textFill="#959595">
+         <font>
+            <Font name="Calibri Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="314.0" layoutY="132.0" rotate="90.0" text="&lt;" textFill="#959595">
+         <font>
+            <Font name="AirbusISIS" size="21.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6a4a442" height="2.0" layoutX="33.0" layoutY="64.0" stroke="TRANSPARENT" strokeType="INSIDE" width="577.0" />
+      <Rectangle arcHeight="13.0" arcWidth="13.0" fill="#dfdfdf" height="13.0" layoutX="113.0" layoutY="26.0" stroke="#707070" strokeType="INSIDE" width="33.0" />
+      <Text fill="#888787" layoutX="126.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <TextField id="bat_title" layoutX="530.0" layoutY="21.0" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #888787;" text="Title goes here">
+         <font>
+            <Font name="Calibri Italic" size="13.5" />
+         </font>
+      </TextField>
+      <VBox layoutX="1.0" layoutY="78.0" prefHeight="129.0" prefWidth="642.0">
+         <children>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="644.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="27.0" stroke="#707070" strokeType="INSIDE" width="70.0">
+                     <fill>
+                        <LinearGradient endX="0.8142857142857143" endY="0.38095238095238093" startX="0.1380952380952381" startY="0.4761904761904761">
+                           <stops>
+                              <Stop color="#deff81" />
+                              <Stop color="#e0ff8243" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <Label layoutX="113.0" layoutY="6.0" text="File 1" textFill="#959595">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="562.0" layoutY="11.0" text="22.3 MB" textFill="#a7a7a7">
+                     <font>
+                        <Font name="Cambria" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="644.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="27.0" stroke="#707070" strokeType="INSIDE" width="70.0">
+                     <fill>
+                        <LinearGradient endX="1.0" startY="1.0">
+                           <stops>
+                              <Stop color="#c7c7c7" />
+                              <Stop color="#c7c7c77a" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+                  <Label layoutX="113.0" layoutY="6.0" text="Attach" textFill="#959595">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="55.0" layoutY="1.0" text="+">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="611.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                     <image>
+                        <Image url="@images/icons8-email-send-96.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <Button id="bar_open" layoutX="307.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#open" opacity="0.0" prefHeight="4.0" prefWidth="28.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</Pane>

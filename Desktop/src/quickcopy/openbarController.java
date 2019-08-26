@@ -11,28 +11,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-
 /**
  *
  * @author Chipleo
  */
-public class barController implements Initializable {
-
+public class openbarController implements Initializable {
+    
     PackageManagerController contr;
-    bar na;
+    open_bar na;
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    @FXML
-    private void open(MouseEvent event) {
-        contr.open(na);
+    public void initialize(URL url, ResourceBundle rb){
+        
     }
     
-    public void send(PackageManagerController _contr, bar our){
-        contr = _contr;
-        na = our;
+    @FXML
+    private void open(MouseEvent event) {
+        contr.close(na);
     }
-
+    
+    public void send(PackageManagerController _contr, open_bar close){
+        contr = _contr;
+        na = close;
+    }
 }

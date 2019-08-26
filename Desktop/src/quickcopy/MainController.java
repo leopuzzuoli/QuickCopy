@@ -64,16 +64,22 @@ public class MainController implements Initializable {
         //select theme
         //get theme
         String theme_selector = prefs.get("theme", "default");
-        
+
         //choose correct one
-        switch(theme_selector){
-            case "modern 2d":   theme = new modern("2d"); break;
-            case "modern 3d":   theme = new modern("3d"); break;
-            case "circles" : theme = new Circles(); break;
-            default: 
+        switch (theme_selector) {
+            case "modern 2d":
+                theme = new modern("2d");
+                break;
+            case "modern 3d":
+                theme = new modern("3d");
+                break;
+            case "circles":
+                theme = new Circles();
+                break;
+            default:
                 theme = new Default();
                 break;
-                
+
         }
         //get all IP addresses
         try {
@@ -101,8 +107,8 @@ public class MainController implements Initializable {
                 System.out.println("possible address: " + temp);
                 if (temp.startsWith("192.168")) {
                     //set it as my ip
-                    if(!myIPs.contains(temp)){
-                    myIPs.add(temp);
+                    if (!myIPs.contains(temp)) {
+                        myIPs.add(temp);
                     }
                 }
             }
@@ -225,7 +231,7 @@ public class MainController implements Initializable {
         welcome_pane.setVisible(false);
         trafficpane.setVisible(false);
     }
-    
+
     @FXML
     private void Traffic(MouseEvent event) {
         topselector.setVisible(false);
@@ -284,16 +290,16 @@ public class MainController implements Initializable {
     public static void addConnection(Connection conn) {
         boolean _found = false;
         for (int i = 0; i < connections.size(); i++) {
-            if(connections.get(i).getAddr().equals(conn.getAddr())){
+            if (connections.get(i).getAddr().equals(conn.getAddr())) {
                 _found = true;
                 break;
             }
         }
-        if(! _found){
-        connections.add(conn);
-        System.out.println("connection added");
+        if (!_found) {
+            connections.add(conn);
+            System.out.println("connection added");
         }
-        
+
     }
 
     public static void setMyPort(int port) {
@@ -318,29 +324,27 @@ public class MainController implements Initializable {
         }*/
         theme.draw(connections);
     }
-    
+
     @FXML
-    private void setdrawPackages(){
+    private void setdrawPackages() {
         boolean darkmode = false;
         //draw PackMan
         FXMLLoader loader = new FXMLLoader();
         //if darkmode, then load the darkmode version
-        /*if(darkmode){
+        if (darkmode) {
             loader.setLocation(getClass().getResource("package_dark.fxml"));
+        } else {
+
+            loader.setLocation(getClass().getResource("package.fxml"));
         }
-        else{
-            */
-        loader.setLocation(getClass().getResource("/quickcopy/package.fxml"));
-       // }
-        
-        try{
-        ScrollPane showBoxes = (ScrollPane)loader.load();
-        packpane.getChildren().add(showBoxes);
-        //send scene so PMC can add to VBox
-   //     PackageManagerController controller = (PackageManagerController)loader.getController();
-     //   controller.sendScene(scene);
-    }
-        catch(Exception e){
+
+        try {
+            ScrollPane showBoxes = (ScrollPane) loader.load();
+            packpane.getChildren().add(showBoxes);
+            //send scene so PMC can add to VBox
+            PackageManagerController controller = (PackageManagerController) loader.getController();
+            controller.sendScene(showBoxes);
+        } catch (IOException e) {
             System.out.println("The boxes screen failed to load: " + e.toString());
         }
     }

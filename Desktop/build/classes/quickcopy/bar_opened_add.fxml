@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="27.0" stroke="#707070" strokeType="INSIDE" width="70.0">
+         <fill>
+            <LinearGradient endX="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#c7c7c7" />
+                  <Stop color="#c7c7c77a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="113.0" layoutY="6.0" text="Attach" textFill="#959595">
+         <font>
+            <Font name="Calibri Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="1.0" text="+">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="611.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+         <image>
+            <Image url="@images/icons8-email-send-96.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

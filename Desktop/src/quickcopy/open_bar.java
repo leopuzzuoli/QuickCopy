@@ -6,30 +6,26 @@
 package quickcopy;
 
 import java.io.IOException;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author Chipleo
  */
-public class bar {
-    
+public class open_bar {
     Pane bar;
         
-    public bar(Package pack, PackageManagerController contr){
+    public open_bar(Package pack, PackageManagerController contr){
         
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("bar.fxml"));
-        try{
-            
+        loader.setLocation(getClass().getResource("bar_opened.fxml"));
+        try{ 
         bar = (Pane) loader.load();
-        barController bar = loader.getController();
-        bar.send(contr, this);
+        openbarController b = loader.getController();
+        b.send(contr,this);
         }catch(IOException e){
-            System.out.println("Could not load bar out of FXML,: " + e.toString());
+            System.out.println("Could not load open_bar out of FXML,: " + e.toString());
         }
     }
     

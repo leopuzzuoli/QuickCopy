@@ -15,8 +15,9 @@ import java.util.List;
 public class Package {
     
     private String name, date;
-    List<Connection> recipients;
+    List<Connection> recipients = new ArrayList<>();
     List<String> files = new ArrayList<>();
+    
     public Package(String _name, List<String> _files, List<Connection> _recipient, String _date){
         name = _name;
         recipients = _recipient;
