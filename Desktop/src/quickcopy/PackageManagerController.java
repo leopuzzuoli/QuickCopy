@@ -6,16 +6,15 @@
 package quickcopy;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -30,7 +29,7 @@ public class PackageManagerController implements Initializable {
     private VBox list;
     private List<Package> packages = new ArrayList<>();
     private List<bar> bars = new ArrayList<>();
-    private List<open_bar>open_bars = new ArrayList<>();
+    private List<open_bar> open_bars = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,35 +55,54 @@ public class PackageManagerController implements Initializable {
         //add all packages to package list
         int z = 0;
         for (Package box : packages) {
-            bars.add(new bar(box,this));
+            //create new bar using package "box"
+            bars.add(new bar(box, this));
+            //add to list
             list.getChildren().add(bars.get(bars.size() - 1).getBar());
             //create open_bar
-            open_bars.add(new open_bar(box,this));
+            open_bars.add(new open_bar(box, this));
             z++;
         }
     }
 
+    @FXML
+    private void addPackage() {
+        //add empty package from button
+        //get date and time in new format
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy / HH:mm");
+        Date date = new Date();
+        //create new empty package
+        Package i = new Package("Empty", formatter.format(date));
+        //add to package list
+        packages.add(i);
+        //create a bar
+        bars.add(new bar(i, this));
+        //render bar
+        list.getChildren().add(bars.get(bars.size() - 1).getBar());
+        //create an open_bar
+        open_bars.add(new open_bar(i, this));
+    }
+
     public void sendScene(ScrollPane scene) {
         //list = (VBox) scene.lookup("#package_list");
-        assert(null != list);
+        assert (null != list);
         draw();
     }
-    
-    public void open(bar me){
+
+    public void open(bar me) {
         //replace closed bar with opened bar
-        
+
         //get bar to replace
-        int index = bars.indexOf(me);  
+        int index = bars.indexOf(me);
         //set open_bar
         list.getChildren().set(index, open_bars.get(index).getBar());
     }
-    
-    public void close(open_bar me){
+
+    public void close(open_bar me) {
         //replace open bar with closed bar
         //get bar to replace
         int index = open_bars.indexOf(me);
         //set it
         list.getChildren().set(index, bars.get(index).getBar());
     }
-    
 }

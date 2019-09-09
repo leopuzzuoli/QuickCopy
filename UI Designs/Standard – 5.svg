@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <clipPath id="clip-Standard_5">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Standard_5" data-name="Standard – 5" clip-path="url(#clip-Standard_5)">
+    <rect width="1920" height="1080" fill="#fff"/>
+    <path id="Path_5" data-name="Path 5" d="M0,0H395V1205H0Z" transform="translate(-38 -43)" fill="#000f37"/>
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(117 98)" fill="#a2a0a0" stroke="#707070" stroke-width="1">
+      <circle cx="56" cy="56" r="56" stroke="none"/>
+      <circle cx="56" cy="56" r="55.5" fill="none"/>
+    </g>
+    <g id="Path_2" data-name="Path 2" transform="translate(117 309)" fill="#a2a0a0">
+      <path d="M 56 111.5 C 48.50732803344727 111.5 41.23904418945313 110.0326538085938 34.39705657958984 107.1387405395508 C 31.10855674743652 105.7478256225586 27.93675804138184 104.0262298583984 24.96977233886719 102.0217742919922 C 22.03084373474121 100.0362701416016 19.26718521118164 97.75604248046875 16.75557136535645 95.24443054199219 C 14.24395751953125 92.73281097412109 11.96372890472412 89.96915435791016 9.978228569030762 87.03022766113281 C 7.973771572113037 84.06324005126953 6.252171516418457 80.89144134521484 4.861257076263428 77.60294342041016 C 1.967342853546143 70.76095581054688 0.5 63.49267196655273 0.5 56 C 0.5 48.50732803344727 1.967342853546143 41.23904418945313 4.861257076263428 34.39705657958984 C 6.252171516418457 31.10855674743652 7.973771572113037 27.93675804138184 9.978228569030762 24.96977233886719 C 11.96372890472412 22.03084373474121 14.24395751953125 19.26718521118164 16.75557136535645 16.75557136535645 C 19.26718521118164 14.24395751953125 22.03084373474121 11.96372890472412 24.96977233886719 9.978228569030762 C 27.93675804138184 7.973771572113037 31.10855674743652 6.252171516418457 34.39705657958984 4.861257076263428 C 41.23904418945313 1.967342853546143 48.50732803344727 0.5 56 0.5 C 63.49267196655273 0.5 70.76095581054688 1.967342853546143 77.60294342041016 4.861257076263428 C 80.89144134521484 6.252171516418457 84.06324005126953 7.973771572113037 87.03022766113281 9.978228569030762 C 89.96915435791016 11.96372890472412 92.73281097412109 14.24395751953125 95.24443054199219 16.75557136535645 C 97.75604248046875 19.26718521118164 100.0362701416016 22.03084373474121 102.0217742919922 24.96977233886719 C 104.0262298583984 27.93675804138184 105.7478256225586 31.10855674743652 107.1387405395508 34.39705657958984 C 110.0326538085938 41.23904418945313 111.5 48.50732803344727 111.5 56 C 111.5 63.49267196655273 110.0326538085938 70.76095581054688 107.1387405395508 77.60294342041016 C 105.7478256225586 80.89144134521484 104.0262298583984 84.06324005126953 102.0217742919922 87.03022766113281 C 100.0362701416016 89.96915435791016 97.75604248046875 92.73281097412109 95.24443054199219 95.24443054199219 C 92.73281097412109 97.75604248046875 89.96915435791016 100.0362701416016 87.03022766113281 102.0217742919922 C 84.06324005126953 104.0262298583984 80.89144134521484 105.7478256225586 77.60294342041016 107.1387405395508 C 70.76095581054688 110.0326538085938 63.49267196655273 111.5 56 111.5 Z" stroke="none"/>
+      <path d="M 56 1 C 48.57461547851563 1 41.37186431884766 2.454048156738281 34.59182739257813 5.321769714355469 C 31.33306121826172 6.700111389160156 28.18991088867188 8.406150817871094 25.24967956542969 10.39253997802734 C 22.33712005615234 12.3602294921875 19.59824371337891 14.62001800537109 17.10912322998047 17.10912322998047 C 14.62001800537109 19.59824371337891 12.3602294921875 22.33712005615234 10.39253997802734 25.24967956542969 C 8.406150817871094 28.18991088867188 6.700111389160156 31.33306121826172 5.321769714355469 34.59182739257813 C 2.454048156738281 41.37186431884766 1 48.57461547851563 1 56 C 1 63.42538452148438 2.454048156738281 70.62814331054688 5.321769714355469 77.40817260742188 C 6.700111389160156 80.66693878173828 8.406150817871094 83.81008911132813 10.39253997802734 86.75032043457031 C 12.3602294921875 89.66287231445313 14.62001800537109 92.40175628662109 17.10912322998047 94.89087677001953 C 19.59824371337891 97.37998199462891 22.33712005615234 99.6397705078125 25.24967956542969 101.6074600219727 C 28.18991088867188 103.5938491821289 31.33306121826172 105.2998962402344 34.59182739257813 106.6782302856445 C 41.37186431884766 109.5459518432617 48.57461547851563 111 56 111 C 63.42538452148438 111 70.62814331054688 109.5459518432617 77.40817260742188 106.6782302856445 C 80.66693878173828 105.2998962402344 83.81008911132813 103.5938491821289 86.75032043457031 101.6074600219727 C 89.66287231445313 99.6397705078125 92.40175628662109 97.37998199462891 94.89087677001953 94.89087677001953 C 97.37998199462891 92.40175628662109 99.6397705078125 89.66287231445313 101.6074600219727 86.75032043457031 C 103.5938491821289 83.81008911132813 105.2998962402344 80.66693878173828 106.6782302856445 77.40817260742188 C 109.5459518432617 70.62814331054688 111 63.42538452148438 111 56 C 111 48.57461547851563 109.5459518432617 41.37186431884766 106.6782302856445 34.59182739257813 C 105.2998962402344 31.33306121826172 103.5938491821289 28.18991088867188 101.6074600219727 25.24967956542969 C 99.6397705078125 22.33712005615234 97.37998199462891 19.59824371337891 94.89087677001953 17.10912322998047 C 92.40175628662109 14.62001800537109 89.66287231445313 12.3602294921875 86.75032043457031 10.39253997802734 C 83.81008911132813 8.406150817871094 80.66693878173828 6.700111389160156 77.40817260742188 5.321769714355469 C 70.62814331054688 2.454048156738281 63.42538452148438 1 56 1 M 56 0 C 86.92794036865234 0 112 25.07205963134766 112 56 C 112 86.92794036865234 86.92794036865234 112 56 112 C 25.07205963134766 112 0 86.92794036865234 0 56 C 0 25.07205963134766 25.07205963134766 0 56 0 Z" stroke="none" fill="#707070"/>
+    </g>
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(117 938)" fill="#a2a0a0" stroke="#707070" stroke-width="1">
+      <circle cx="56" cy="56" r="56" stroke="none"/>
+      <circle cx="56" cy="56" r="55.5" fill="none"/>
+    </g>
+    <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(1882 91)" fill="#f3f3f3" stroke="#707070" stroke-width="1">
+      <rect width="24" height="983" rx="10" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="982" rx="9.5" fill="none"/>
+    </g>
+    <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(1882 91)" fill="#f3f3f3" stroke="#707070" stroke-width="1">
+      <rect width="24" height="983" rx="10" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="982" rx="9.5" fill="none"/>
+    </g>
+    <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(1882 67)" fill="#cfcfcf" stroke="#707070" stroke-width="1">
+      <rect width="24" height="89" rx="10" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="88" rx="9.5" fill="none"/>
+    </g>
+    <g id="Group_7" data-name="Group 7">
+      <g id="Group_6" data-name="Group 6" transform="translate(456 98)">
+        <rect id="Rectangle_9" data-name="Rectangle 9" width="1354" height="180" rx="22" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells" data-name="Joshua Bells" transform="translate(513 185)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_" data-name="&lt;" transform="translate(1723.5 145.991) rotate(90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Group_7-2" data-name="Group 7" transform="translate(0 226)">
+      <g id="Group_6-2" data-name="Group 6">
+        <rect id="Rectangle_9-2" data-name="Rectangle 9" width="1354" height="127" rx="22" transform="translate(456 98)" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells-2" data-name="Joshua Bells" transform="translate(513 180)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_2" data-name="&lt;" transform="translate(1759.5 181.5) rotate(-90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Group_7-3" data-name="Group 7" transform="translate(0 390)">
+      <g id="Group_6-3" data-name="Group 6">
+        <rect id="Rectangle_9-3" data-name="Rectangle 9" width="1354" height="127" rx="22" transform="translate(456 98)" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells-3" data-name="Joshua Bells" transform="translate(513 180)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_3" data-name="&lt;" transform="translate(1759.5 181.5) rotate(-90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Group_7-4" data-name="Group 7" transform="translate(0 554)">
+      <g id="Group_6-4" data-name="Group 6">
+        <rect id="Rectangle_9-4" data-name="Rectangle 9" width="1354" height="127" rx="22" transform="translate(456 98)" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells-4" data-name="Joshua Bells" transform="translate(513 180)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_4" data-name="&lt;" transform="translate(1759.5 181.5) rotate(-90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Group_7-5" data-name="Group 7" transform="translate(0 718)">
+      <g id="Group_6-5" data-name="Group 6">
+        <rect id="Rectangle_9-5" data-name="Rectangle 9" width="1354" height="127" rx="22" transform="translate(456 98)" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells-5" data-name="Joshua Bells" transform="translate(513 180)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_5" data-name="&lt;" transform="translate(1759.5 181.5) rotate(-90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Group_7-6" data-name="Group 7" transform="translate(0 882)">
+      <g id="Group_6-6" data-name="Group 6">
+        <rect id="Rectangle_9-6" data-name="Rectangle 9" width="1354" height="127" rx="22" transform="translate(456 98)" fill="#51ab75"/>
+      </g>
+      <text id="Joshua_Bells-6" data-name="Joshua Bells" transform="translate(513 180)" fill="#fff" font-size="56" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Joshua Bells</tspan></text>
+      <text id="_6" data-name="&lt;" transform="translate(1759.5 181.5) rotate(-90)" fill="#fff" font-size="60" font-family="AirbusISIS"><tspan x="0" y="0">&lt;</tspan></text>
+    </g>
+    <g id="Path_7" data-name="Path 7" transform="translate(456 223)" fill="rgba(75,227,232,0.99)">
+      <path d="M1354,62h0Z" stroke="none"/>
+      <path d="M 0 62 L 1354 62 L 0 62 Z" stroke="none" fill="#707070"/>
+    </g>
+    <path id="Path_8" data-name="Path 8" d="M0,0H1354V43a19,19,0,0,1-19,19H23A23,23,0,0,1,0,39Z" transform="translate(456 216)" fill="#479566"/>
+  </g>
+</svg>

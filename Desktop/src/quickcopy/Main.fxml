@@ -16,12 +16,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="background:main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="893.0" style="-fx-background-color: #3D4956;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.MainController">
    <children>
-      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+      <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
          <children>
             <ScrollPane prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #000000;" visible="false">
                <content>
@@ -105,7 +106,7 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -145,6 +146,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <Circle fill="DODGERBLUE" layoutX="117.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="180.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="247.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="320.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="DODGERBLUE" layoutX="386.0" layoutY="253.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </AnchorPane>
       <ImageView id="scanner_logo" fitHeight="61.0" fitWidth="61.0" layoutX="29.0" layoutY="63.0" onMousePressed="#Scan" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50%;">

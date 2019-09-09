@@ -16,8 +16,8 @@
                   <Image url="@images/PackScreenBackground.png" />
                </image>
             </ImageView>
-            <Button id="add_new" layoutX="71.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="24.0" style="-fx-opacity: 0;" />
-            <Button id="add_new_button" layoutX="56.0" layoutY="18.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="646.0" style="-fx-opacity: 0;" />
+            <Button id="add_new" layoutX="71.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#addPackage" prefHeight="25.0" prefWidth="24.0" style="-fx-opacity: 0;" />
+            <Button id="add_new_button" layoutX="56.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#addPackage" prefHeight="54.0" prefWidth="646.0" style="-fx-opacity: 0;" />
             <VBox id="package_list" fx:id="list" layoutX="55.0" layoutY="89.0" prefHeight="582.0" prefWidth="670.0" style="-fx-spacing: 8px;" />
          </children>
       </Pane>

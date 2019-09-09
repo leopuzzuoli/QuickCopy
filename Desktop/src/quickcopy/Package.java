@@ -24,6 +24,11 @@ public class Package {
         date = _date;
         files = _files;
     }
+    //for empty list construction
+    public Package(String _name, String _date){
+        name = _name;
+        date = _date;
+    }
     
     public String getName(){
         return name;
