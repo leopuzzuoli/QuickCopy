@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -16,6 +15,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
@@ -24,13 +24,13 @@
    <children>
       <AnchorPane id="scanner" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
          <children>
-            <ScrollPane prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #000000;" visible="false">
+            <ScrollPane prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
                <content>
-                  <ListView fx:id="listview" prefHeight="562.0" prefWidth="756.0" style="-fx-background-color: #505050;" />
+                  <VBox fx:id="scanlist" prefHeight="607.0" prefWidth="757.0" style="-fx-alignment: top_center; -fx-padding: 20px; -fx-spacing: 8px; -fx-background-color: #ffffff;" />
                </content>
             </ScrollPane>
          </children></AnchorPane>
-      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" />
+      <AnchorPane id="packets" layoutX="121.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false" />
       <AnchorPane id="Welcome" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Label layoutX="246.0" layoutY="48.0" text="Welcome" textFill="#000000dc">
@@ -106,7 +106,7 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -21,18 +22,21 @@ import javafx.scene.control.Alert.AlertType;
  * @author Chipleo
  */
 public class TServer extends Thread {
-    
+
     private int port;
     private boolean running = true;
-    
-    public TServer(int l_port) {
+
+    MainController mc;
+
+    public TServer(int l_port, MainController _mc) {
+        mc = _mc;
         port = l_port;
     }
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-    
+
     @Override
     public void run() {
         if (tryport(port)) {
@@ -44,7 +48,7 @@ public class TServer extends Thread {
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Critical Error Starting TCP Server");
             alert.setContentText("The TCP server could not be started, see the log for more informnation or contact the developer at chipleo.codes@gmail.com");
-            
+
             alert.showAndWait();
             System.exit(1);
         } else {
@@ -53,7 +57,7 @@ public class TServer extends Thread {
             run();
         }
     }
-    
+
     private void waitandcommunicate() {
         while (running) {
             try {
@@ -62,17 +66,23 @@ public class TServer extends Thread {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String received = in.readLine();
                 //if recieved is reply to scan
-                System.out.println("<- " +received);
+                System.out.println("<- " + received);
                 if (received.startsWith("QC responding from ")) {
                     //add connection
                     String[] i_i = received.split("QC responding from ");
                     String[] all = i_i[1].split(":");
-                    
+
                     Connection newConn = new Connection(all[0], Integer.parseInt(all[1]));
                     //checks should be made for name
                     newConn.setName(all[2]);
-                    
-                    MainController.addConnection(newConn);
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Update UI here.
+                            MainController.addConnection(newConn, mc);
+                        }
+                    });
                 } else {
                     //handle recieved message
                 }
@@ -81,7 +91,7 @@ public class TServer extends Thread {
             }
         }
     }
-    
+
     private boolean tryport(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -91,7 +101,7 @@ public class TServer extends Thread {
             return false;
         }
     }
-    
+
     public void halt() {
         try {
             running = false;

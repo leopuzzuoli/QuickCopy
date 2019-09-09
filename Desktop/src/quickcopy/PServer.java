@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 
 /**
  *
@@ -27,7 +28,13 @@ public class PServer extends Thread {
     private List<String> myIPs = new ArrayList<>();
     private int myPort;
 
-    public PServer() {
+    //MainController cause Java
+    MainController mc;
+
+    public PServer(MainController _mc) {
+
+        mc = _mc;
+
         try {
             //Try to open server at 4445
             socket = new DatagramSocket(4445);
@@ -74,15 +81,20 @@ public class PServer extends Thread {
                 TClient tc = new TClient();
                 tc.startConnection(connfound.getAddr(), connfound.getPort());
                 //respond with all IPs
-                for(String addr : myIPs){
-                System.out.println("-> QC responding from " + addr + ":" + myPort+":" + myname);
-                tc.sendMessage("QC responding from " + addr + ":" + myPort+":" + myname);
+                for (String addr : myIPs) {
+                    System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
+                    tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
                 }
                 tc.stopConnection();
 
                 //add to conns
-                MainController.addConnection(connfound);
-
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Update UI here.
+                        MainController.addConnection(connfound, mc);
+                    }
+                });
             }
 
             /*try {
@@ -98,15 +110,16 @@ public class PServer extends Thread {
     public void halt() {
         running = false;
     }
-    
-    public void setIP(List<String> ip){
+
+    public void setIP(List<String> ip) {
         myIPs = ip;
     }
-    
-    public void setPort(int port){
+
+    public void setPort(int port) {
         myPort = port;
     }
-    public void setHostname(String Hostname){
+
+    public void setHostname(String Hostname) {
         myname = Hostname;
     }
 }

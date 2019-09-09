@@ -23,10 +23,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
 import quickcopy.Themes.Default;
 import quickcopy.Themes.Circles;
@@ -43,18 +43,19 @@ public class MainController implements Initializable {
     private static DatagramSocket socket = null;
     List<InetAddress> channels;
     Scene scene;
-    PServer server = new PServer();
-    TServer TCPServer = new TServer(4446);
+    PServer server = new PServer(this);
+    TServer TCPServer = new TServer(4446, this);
     private List<String> myIPs = new ArrayList<>();
     String myname = "QuickCopy";
     static int myport = 4446;
     Ellipse topselector, middleselector, bottomselector, trafficselector;
     AnchorPane settingspane, scannerpane, packpane, welcome_pane, trafficpane;
-    ListView listview;
     long timesince = 0;
     public ThemeInterface theme;
     static private List<Connection> connections = new ArrayList<>();
     Preferences prefs = Preferences.userNodeForPackage(quickcopy.MainController.class);
+    @FXML
+    VBox scanlist;
 
     /**
      * Initializes the controller class.
@@ -67,17 +68,11 @@ public class MainController implements Initializable {
 
         //choose correct one
         switch (theme_selector) {
-            case "modern 2d":
-                theme = new modern("2d");
-                break;
-            case "modern 3d":
-                theme = new modern("3d");
-                break;
             case "circles":
                 theme = new Circles();
                 break;
             default:
-                theme = new Default();
+                theme = new modern();
                 break;
 
         }
@@ -121,6 +116,7 @@ public class MainController implements Initializable {
         server.start();
         TCPServer.start();
         server.setPort(myport);
+
     }
 
     @FXML
@@ -140,7 +136,7 @@ public class MainController implements Initializable {
 
         //if Scan has been a long time ago or never happened
         if (timesince < (10 * 60) && timesince != 0) {
-            drawConnections();
+            //drawConnections();
         } else {
             connections.clear();
             //Find All Broadcast Addresses
@@ -169,6 +165,13 @@ public class MainController implements Initializable {
         }
 
         //We should log Sys.out
+        //TODO: This is BAD, find another way to call drawConnections
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println(e.toString());
+        }
+        drawConnections();
     }
 
     public void broadcast(
@@ -281,13 +284,11 @@ public class MainController implements Initializable {
         welcome_pane = (AnchorPane) scene.lookup("#Welcome");
         trafficpane = (AnchorPane) scene.lookup("#traffic");
 
-        listview = (ListView) scene.lookup("#listview");
-
         setdrawPackages();
-        drawConnections();
+        //drawConnections();
     }
 
-    public static void addConnection(Connection conn) {
+    public static void addConnection(Connection conn, MainController contr) {
         boolean _found = false;
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getAddr().equals(conn.getAddr())) {
@@ -298,6 +299,8 @@ public class MainController implements Initializable {
         if (!_found) {
             connections.add(conn);
             System.out.println("connection added");
+            //only draw Conns if new conn is added
+            contr.drawConnections();
         }
 
     }
@@ -308,21 +311,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void drawConnections() {
-        //draw connections book
-        /*
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("scancontrol.fxml"));
-
-        try {
-            AnchorPane connectionpane = (AnchorPane) loader.load();
-
-            listview.getItems().add(connectionpane);
-            listview.getItems().add(connectionpane);
-            listview.getItems().add(connectionpane);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }*/
-        theme.draw(connections);
+        theme.draw(connections, scannerpane, scanlist);
     }
 
     @FXML

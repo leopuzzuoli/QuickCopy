@@ -6,6 +6,8 @@
 package quickcopy.Themes;
 
 import java.util.List;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import quickcopy.Connection;
 import quickcopy.ThemeInterface;
 
@@ -18,5 +20,5 @@ public class Default implements ThemeInterface {
         
     }
     
-    public void draw(List<Connection> conns){}
+    public void draw(List<Connection> conns, AnchorPane Scanner, VBox _list){}
 }

@@ -48,7 +48,7 @@
          </children>
       </Pane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6a4a442" height="2.0" layoutX="33.0" layoutY="64.0" stroke="TRANSPARENT" strokeType="INSIDE" width="577.0" />
-      <TextField id="bat_title" fx:id="bar_title" alignment="CENTER_RIGHT" layoutX="526.0" layoutY="21.0" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #888787;" text="Title goes here">
+      <TextField id="bat_title" fx:id="bar_title" alignment="CENTER_RIGHT" layoutX="461.0" layoutY="21.0" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #888787;" text="Title goes here">
          <font>
             <Font name="Calibri Italic" size="13.5" />
          </font>

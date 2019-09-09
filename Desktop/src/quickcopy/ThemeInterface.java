@@ -6,12 +6,14 @@
 package quickcopy;
 
 import java.util.List;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
  * @author Chipleo
  */
 public interface ThemeInterface {
-    public void draw(List<Connection> conns);
+    public void draw(List<Connection> conns, AnchorPane Scanner, VBox _list);
     
 }
