@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -33,7 +34,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField layoutX="29.0" layoutY="61.0" prefHeight="25.0" prefWidth="622.0" promptText="Write here..." style="-fx-background-color: #ffffff00; -fx-text-fill: #000000;" />
+      <TextField fx:id="message" layoutX="29.0" layoutY="61.0" prefHeight="25.0" prefWidth="622.0" promptText="Write here..." style="-fx-background-color: #ffffff00; -fx-text-fill: #000000;" />
       <Line endX="109.0" endY="8.5" layoutX="-80.0" layoutY="73.0" opacity="0.63" startX="109.0" startY="-6.5" stroke="#a4a4a4" />
       <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="6.0" layoutY="64.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="28.3">
          <image>
@@ -45,7 +46,8 @@
             <Image url="@../images/icons8-email-send-96.png" />
          </image>
       </ImageView>
-      <Button id="attach" layoutX="5.0" layoutY="61.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" />
-      <Button id="send" layoutX="650.0" layoutY="63.0" mnemonicParsing="false" style="-fx-background-color: #ffffff00;" />
+      <Button id="attach" layoutX="5.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#fileSelector" style="-fx-background-color: #ffffff00;" />
+      <Button id="send" layoutX="650.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#sendQuickMessage" style="-fx-background-color: #ffffff00;" />
+      <Circle id="attached_icon" fx:id="attached_icon" fill="#ffe33b" layoutX="21.0" layoutY="68.0" radius="4.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
    </children>
 </Pane>

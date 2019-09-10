@@ -116,7 +116,7 @@ public class MainController implements Initializable {
         server.start();
         TCPServer.start();
         server.setPort(myport);
-
+ //TODO: make it faster (UI Block during scan)
     }
 
     @FXML
@@ -313,7 +313,11 @@ public class MainController implements Initializable {
     private void drawConnections() {
         theme.draw(connections, scannerpane, scanlist);
     }
-
+    
+    public static List getConnections(){
+        return connections;
+    }
+    
     @FXML
     private void setdrawPackages() {
         boolean darkmode = false;

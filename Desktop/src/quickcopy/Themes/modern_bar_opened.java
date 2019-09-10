@@ -5,36 +5,65 @@
  */
 package quickcopy.Themes;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import quickcopy.Connection;
+import quickcopy.TClient;
 
 /**
  *
  * @author Chipleo
  */
 public class modern_bar_opened {
+
     Pane bar;
     modern controller;
-    
-    public modern_bar_opened(Connection conn, modern c){
+    //connection this bar represents
+    Connection represents;
+
+    public modern_bar_opened(Connection conn, modern c) {
         controller = c;
+        represents = conn;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("modern_scan_open.fxml"));
-        try{    
-        bar = (Pane) loader.load();
-        modern_bar_openedController bc = loader.getController();
-        bc.send(this);
-        }catch(IOException e){
+        try {
+            bar = (Pane) loader.load();
+            modern_bar_openedController bc = loader.getController();
+            bc.send(this);
+        } catch (IOException e) {
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }
     }
-    
-    public Pane getBar(){
+
+    public Pane getBar() {
         return bar;
     }
-    public void close(){
+
+    public void close() {
         controller.close(this);
+    }
+
+    public void sendQuickMessage(List<String> files_to_send, List<String> file_names, String message) {
+        if (files_to_send.isEmpty()) {
+            TClient client = new TClient();
+            client.startConnection(represents.getAddr(), represents.getPort());
+            client.sendMessage("msg " + message);
+            client.stopConnection();
+        } else {
+            //send file acceptance request
+            new Thread() {
+                @Override
+                public void run() {
+                    TClient client = new TClient();
+                    client.startConnection(represents.getAddr(), represents.getPort());
+                    client.sendAccept(file_names, files_to_send);
+                    client.sendMessage("msg " + message);
+                    client.stopConnection();
+                }
+            }.start();
+        }
     }
 }

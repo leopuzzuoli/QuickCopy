@@ -6,14 +6,22 @@
 package quickcopy;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 
 //TODO: proper error handling, : not allowed in name
 //whem server cannot exit, force close, when server cannot start, see what can be done or exit app, better etc.
@@ -23,8 +31,11 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class TServer extends Thread {
 
+    //TODO: Path
+    String PATH = "E:\\Documents\\Programming\\Java\\";
     private int port;
     private boolean running = true;
+    private List<String> acceptedFiles = new ArrayList<>();
 
     MainController mc;
 
@@ -58,6 +69,7 @@ public class TServer extends Thread {
         }
     }
 
+    //TODO: Put handling on different thread, the current way we can only accept 1 conn at once plus we need to reconenct for every file we send
     private void waitandcommunicate() {
         while (running) {
             try {
@@ -83,10 +95,85 @@ public class TServer extends Thread {
                             MainController.addConnection(newConn, mc);
                         }
                     });
-                } else {
+                } else if (received.startsWith("msg")) {
                     //handle recieved message
+                    System.out.println(received.substring(3));
+                } else if (received.startsWith("Accept")) {
+                    System.out.println(received.substring(6));
+
+                    //see who is sending the message
+                    Thread t1 = new Thread() {
+
+                        public void run() {
+
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String sender = "A user ";
+                                    List<Connection> conns = MainController.getConnections();
+                                    for (Connection c : conns) {
+                                        if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
+                                            sender = c.getName() + " ";
+                                        }
+                                    }
+                                    //ask user if he wants to accept the files
+                                    Alert alert = new Alert(AlertType.CONFIRMATION);
+                                    alert.setTitle("Request received");
+                                    alert.setHeaderText(sender + "wants to send you these files, Accept?");
+                                    alert.setContentText(received.substring(6));
+                                    ButtonType buttonTypeAccept = new ButtonType("Accept");
+                                    ButtonType buttonTypeCancel = new ButtonType("Refuse", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                                    alert.getButtonTypes().setAll(buttonTypeAccept, buttonTypeCancel);
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    //1 accept 0 refuse
+                                    if (result.get() == buttonTypeAccept) {
+                                        out.println("green");
+                                        System.out.println("green");
+                                        //add accepted files to list of accepted files
+                                        acceptedFiles.addAll(Arrays.asList(received.substring(7, received.length() - 1).split(", ")));
+                                    } else {
+                                        out.println("red");
+                                    }
+                                }
+
+                            });
+                        }
+                    };
+                    t1.start();
+                    try{
+                    t1.join();
+                    System.out.println("Thread Completed");
+                    }
+                    catch(InterruptedException e){
+                        System.out.println("Thread interrupted");
+                    }
+
+                } else if (received.startsWith("file")) {
+                    //get data
+                    String filename = received.split(" ")[1];
+                    String _filesize = received.split(" ")[2];
+                    int filesize = Integer.parseInt(_filesize);
+
+                    DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
+                    FileOutputStream fos = new FileOutputStream(PATH + filename);
+                    byte[] buffer = new byte[4096];
+
+                    int read = 0;
+                    int totalRead = 0;
+                    int remaining = filesize;
+                    while ((read = dis.read(buffer, 0, Math.min(buffer.length, remaining))) > 0) {
+                        totalRead += read;
+                        remaining -= read;
+                        //TODO: make into loading bar
+                        System.out.println("read " + totalRead + " bytes.");
+                        fos.write(buffer, 0, read);
+                    }
+                    System.out.println("dojne: " + filename);
+                    fos.close();
+                    dis.close();
                 }
-            } catch (Exception e) {
+            } catch (IOException | NumberFormatException e) {
                 System.out.println("communication error: " + e.toString());
             }
         }
