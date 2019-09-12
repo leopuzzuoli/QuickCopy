@@ -5,6 +5,7 @@
  */
 package quickcopy;
 
+import java.awt.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

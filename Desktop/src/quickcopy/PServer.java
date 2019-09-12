@@ -77,15 +77,22 @@ public class PServer extends Thread {
                 //remove newline character on port value only works with 4 char ports
                 Connection connfound = new Connection(i_p[0], Integer.parseInt(i_p[1].substring(0, 4)));
 
-                //respond
-                TClient tc = new TClient();
-                tc.startConnection(connfound.getAddr(), connfound.getPort());
                 //respond with all IPs
                 for (String addr : myIPs) {
+                    //respond
+                TClient tc = new TClient();
+                tc.startConnection(connfound.getAddr(), connfound.getPort());
                     System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
                     tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
+                    tc.stopConnection();
+                    //TODO: This is not needed when TCP server can handle multiple connections
+                    try{
+                    Thread.sleep(1000);
+                    }
+                    catch(InterruptedException e){
+                        System.out.println(e.toString());
+                    }
                 }
-                tc.stopConnection();
 
                 //add to conns
                 Platform.runLater(new Runnable() {

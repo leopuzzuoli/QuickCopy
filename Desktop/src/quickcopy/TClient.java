@@ -48,6 +48,7 @@ public class TClient {
     }
 
     public void sendAccept(List<String> files, List<String> filepaths) {
+        //TODO: files with spaces in them cannot be sent yet
         //if files and filepaths are not the same length, someone is trying to smuggle extra files
         sendMessage("Accept " + files);
         try {
