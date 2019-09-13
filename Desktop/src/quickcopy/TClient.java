@@ -12,7 +12,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 /**
@@ -29,22 +31,32 @@ public class TClient {
     String Address;
     int po;
 
-    public void startConnection(String ip, int port) {
+    public void startConnection(String ip, int port)  throws SocketTimeoutException{
         try {
             
             Address = ip;
             po = port;
             
-            clientSocket = new Socket(ip, port);
+            clientSocket = new Socket();
+            clientSocket.connect(new InetSocketAddress(ip, port), 1000);
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } catch (IOException e) {
+        } 
+        catch(SocketTimeoutException e){
+            throw new SocketTimeoutException();
+        }
+        catch (IOException e) {
             System.out.println("Error in TClient: " + e.toString());
         }
     }
 
     public void sendMessage(String msg) {
+        try{
         out.println(msg);
+        }
+        catch(NullPointerException e){
+            e.toString();
+        }
     }
 
     public void sendAccept(List<String> files, List<String> filepaths) {
