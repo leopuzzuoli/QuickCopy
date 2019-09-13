@@ -7,6 +7,7 @@ package quickcopy.Themes;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -32,7 +33,7 @@ public class modern_bar_opened {
         try {
             bar = (Pane) loader.load();
             modern_bar_openedController bc = loader.getController();
-            bc.send(this);
+            bc.send(this, represents.getName());
         } catch (IOException e) {
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }
@@ -49,7 +50,12 @@ public class modern_bar_opened {
     public void sendQuickMessage(List<String> files_to_send, List<String> file_names, String message) {
         if (files_to_send.isEmpty()) {
             TClient client = new TClient();
-            client.startConnection(represents.getAddr(), represents.getPort());
+            try {
+                client.startConnection(represents.getAddr(), represents.getPort());
+
+            } catch (SocketTimeoutException e) {
+                System.out.println(e.toString());
+            }
             client.sendMessage("msg " + message);
             client.stopConnection();
         } else {
@@ -58,7 +64,12 @@ public class modern_bar_opened {
                 @Override
                 public void run() {
                     TClient client = new TClient();
-                    client.startConnection(represents.getAddr(), represents.getPort());
+                    try {
+                        client.startConnection(represents.getAddr(), represents.getPort());
+
+                    } catch (SocketTimeoutException e) {
+                        System.out.println(e.toString());
+                    }
                     client.sendAccept(file_names, files_to_send);
                     client.sendMessage("msg " + message);
                     client.stopConnection();

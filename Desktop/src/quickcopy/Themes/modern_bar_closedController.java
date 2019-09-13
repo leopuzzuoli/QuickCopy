@@ -9,12 +9,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author Chipleo
  */
 public class modern_bar_closedController implements Initializable{
+    @FXML
+    Label username;
+    
     modern_bar_closed controller;
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -26,5 +30,9 @@ public class modern_bar_closedController implements Initializable{
     }
     public void send(modern_bar_closed m){
         controller = m;
+    }
+    public void setAll(String name)
+    {
+        username.setText(name);
     }
 }

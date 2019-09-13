@@ -28,6 +28,7 @@ public class modern_bar_closed {
         bar = (Pane) loader.load();
         modern_bar_closedController bc = loader.getController();
         bc.send(this);
+        bc.setAll(conn.getName());
         }catch(IOException e){
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }

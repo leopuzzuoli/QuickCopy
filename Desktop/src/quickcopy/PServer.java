@@ -10,6 +10,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
@@ -81,7 +82,11 @@ public class PServer extends Thread {
                 for (String addr : myIPs) {
                     //respond
                 TClient tc = new TClient();
+                try{
                 tc.startConnection(connfound.getAddr(), connfound.getPort());
+                }catch(SocketTimeoutException e){
+                    System.out.println(e.toString());
+                }
                     System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
                     tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
                     tc.stopConnection();

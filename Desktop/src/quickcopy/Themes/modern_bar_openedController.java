@@ -8,7 +8,6 @@ package quickcopy.Themes;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -18,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -36,14 +36,17 @@ public class modern_bar_openedController implements Initializable {
     TextField message;
     @FXML
     Circle attached_icon;
+    @FXML
+    Label username;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    public void send(modern_bar_opened m) {
+    public void send(modern_bar_opened m, String userjn) {
         controller = m;
+        username.setText(userjn);
     }
 
     @FXML
@@ -107,4 +110,5 @@ public class modern_bar_openedController implements Initializable {
             selected = true;
         }
     }
+    
 }

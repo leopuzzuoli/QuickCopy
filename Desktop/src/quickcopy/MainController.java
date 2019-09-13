@@ -288,7 +288,7 @@ public class MainController implements Initializable {
         //drawConnections();
     }
 
-    public static void addConnection(Connection conn, MainController contr) {
+    public synchronized static void addConnection(Connection conn, MainController contr) {
         boolean _found = false;
         for (int i = 0; i < connections.size(); i++) {
             if (connections.get(i).getAddr().equals(conn.getAddr())) {
