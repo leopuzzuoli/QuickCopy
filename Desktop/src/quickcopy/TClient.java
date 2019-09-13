@@ -27,35 +27,40 @@ public class TClient {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-    
+
     String Address;
     int po;
 
-    public void startConnection(String ip, int port)  throws SocketTimeoutException{
+    public void startConnection(String ip, int port) throws SocketTimeoutException {
         try {
-            
+
             Address = ip;
             po = port;
-            
+
             clientSocket = new Socket();
+            //connect to socket (timeout 1 second)
             clientSocket.connect(new InetSocketAddress(ip, port), 1000);
+
+        } catch (SocketTimeoutException e) {
+            throw new SocketTimeoutException();
+        } catch (IOException e) {
+            System.out.println("Error in TClient: " + e.toString());
+        }
+        try {
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        } 
-        catch(SocketTimeoutException e){
-            throw new SocketTimeoutException();
-        }
-        catch (IOException e) {
+
+        } catch (IOException e) {
             System.out.println("Error in TClient: " + e.toString());
         }
     }
 
     public void sendMessage(String msg) {
-        try{
-        out.println(msg);
-        }
-        catch(NullPointerException e){
-            e.toString();
+        //TODO: no handling should be required here
+        try {
+            out.println(msg);
+        } catch (NullPointerException e) {
+            
         }
     }
 
@@ -65,6 +70,7 @@ public class TClient {
         sendMessage("Accept " + files);
         try {
             String res = in.readLine();
+            //if yes (greenlit)
             if ("green".equals(res)) {
                 //send files
                 int z = 0;
@@ -74,6 +80,7 @@ public class TClient {
                         return;
                     }
                     System.out.println("file " + file + " " + acfile.length());
+                    //TODO: connection is stopped and started for each new file, maybe flush and send?
                     stopConnection();
                     startConnection(Address, po);
                     sendMessage("file " + files.get(z) + " " + acfile.length());

@@ -10,7 +10,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="674.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.Themes.modern_bar_closedController">
    <children>
       <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#51ab75" height="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
-      <Label id="username" layoutX="29.0" layoutY="15.0" text="Joshua Bells" textFill="WHITE">
+      <Label id="username" fx:id="username" layoutX="29.0" layoutY="15.0" text="Joshua Bells" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="28.0" />
          </font>

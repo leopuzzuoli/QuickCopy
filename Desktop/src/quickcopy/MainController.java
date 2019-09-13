@@ -46,7 +46,7 @@ public class MainController implements Initializable {
     PServer server = new PServer(this);
     TServer TCPServer = new TServer(4446, this);
     private List<String> myIPs = new ArrayList<>();
-    String myname = "QuickCopy";
+    String myname = "QuickCopy2";
     static int myport = 4446;
     Ellipse topselector, middleselector, bottomselector, trafficselector;
     AnchorPane settingspane, scannerpane, packpane, welcome_pane, trafficpane;
@@ -116,7 +116,7 @@ public class MainController implements Initializable {
         server.start();
         TCPServer.start();
         server.setPort(myport);
- //TODO: make it faster (UI Block during scan)
+        //TODO: make it faster (UI Block during scan)
     }
 
     @FXML
@@ -139,39 +139,40 @@ public class MainController implements Initializable {
             //drawConnections();
         } else {
             connections.clear();
-            //Find All Broadcast Addresses
-            System.out.println("STARTING QUERY");
-            timesince = System.nanoTime() / 1000000000 - timesince;
-            try {
-                channels = listAllBroadcastAddresses();
-            } catch (SocketException e) {
-                System.out.println("SocketException: " + e.toString());
-            }
-            System.out.println("QUERY OVER");
-            //Broadcast "QC at IP:port" to all Addresses
-            for (int i = 0; i < channels.size(); i++) {
-                System.out.println("BroadCasting on " + channels.get(i).toString().substring(1));
-                //do it for all addresses
-                for (String addr : myIPs) {
+
+            //do this on new Thread in order not to block UI
+            new Thread() {
+                @Override
+                public void run() {
+
+                    //Find All Broadcast Addresses
+                    System.out.println("STARTING QUERY");
+                    timesince = System.nanoTime() / 1000000000 - timesince;
                     try {
-                        System.out.println("-> QC at " + addr + ":" + myport);
-                        broadcast("QC at " + addr + ":" + myport, InetAddress.getByName(channels.get(i).toString().substring(1)));
-                    } catch (Exception e) {
-                        System.out.println("ERROR: " + e.toString());
+                        channels = listAllBroadcastAddresses();
+                    } catch (SocketException e) {
+                        System.out.println("SocketException: " + e.toString());
+                    }
+                    System.out.println("QUERY OVER");
+                    //Broadcast "QC at IP:port" to all Addresses
+                    for (int i = 0; i < channels.size(); i++) {
+                        System.out.println("BroadCasting on " + channels.get(i).toString().substring(1));
+                        //do it for all addresses
+                        for (String addr : myIPs) {
+                            try {
+                                System.out.println("-> QC at " + addr + ":" + myport);
+                                broadcast("QC at " + addr + ":" + myport, InetAddress.getByName(channels.get(i).toString().substring(1)));
+                            } catch (IOException e) {
+                                System.out.println("ERROR: " + e.toString());
+                            }
+                        }
+
                     }
                 }
-
-            }
+            }.start();
         }
 
-        //We should log Sys.out
-        //TODO: This is BAD, find another way to call drawConnections
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            System.out.println(e.toString());
-        }
-        drawConnections();
+        //We should log Sys.out/
     }
 
     public void broadcast(
@@ -313,11 +314,11 @@ public class MainController implements Initializable {
     private void drawConnections() {
         theme.draw(connections, scannerpane, scanlist);
     }
-    
-    public static List getConnections(){
+
+    public static List getConnections() {
         return connections;
     }
-    
+
     @FXML
     private void setdrawPackages() {
         boolean darkmode = false;

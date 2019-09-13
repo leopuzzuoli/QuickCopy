@@ -35,7 +35,7 @@ public class TServer extends Thread {
     String PATH = "E:\\Documents\\Programming\\Java\\";
     private int port;
     private boolean running = true;
-    private List<String> acceptedFiles = new ArrayList<>();
+    private final List<String> acceptedFiles = new ArrayList<>();
 
     MainController mc;
 
@@ -74,7 +74,7 @@ public class TServer extends Thread {
         while (running) {
             try {
                 clientSocket = serverSocket.accept();
-                Thread connectionHandler = new Thread() {
+                new Thread() {
                     @Override
                     public void run() {
                         try{
@@ -169,8 +169,7 @@ public class TServer extends Thread {
                     System.out.println("communication error inside Thread: " + e.toString());
                 }
                     }
-                };
-                        connectionHandler.start();
+                }.start();
             } catch (IOException | NumberFormatException e) {
                 System.out.println("communication error: " + e.toString());
             }
