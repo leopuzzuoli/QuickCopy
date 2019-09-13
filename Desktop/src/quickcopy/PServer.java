@@ -78,35 +78,33 @@ public class PServer extends Thread {
                 //remove newline character on port value only works with 4 char ports
                 Connection connfound = new Connection(i_p[0], Integer.parseInt(i_p[1].substring(0, 4)));
 
+                //if connection is reachable from our network position
+                boolean connReachable = false;
                 //respond with all IPs
                 for (String addr : myIPs) {
                     //respond
-                TClient tc = new TClient();
-                try{
-                tc.startConnection(connfound.getAddr(), connfound.getPort());
-                }catch(SocketTimeoutException e){
-                    System.out.println(e.toString());
-                }
-                    System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
-                    tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
-                    tc.stopConnection();
-                    //TODO: This is not needed when TCP server can handle multiple connections
-                    try{
-                    Thread.sleep(1000);
-                    }
-                    catch(InterruptedException e){
+                    TClient tc = new TClient();
+                    try {
+                        tc.startConnection(connfound.getAddr(), connfound.getPort());
+                        System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
+                        tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
+                        tc.stopConnection();
+                        connReachable = true;
+                    } catch (SocketTimeoutException e) {
                         System.out.println(e.toString());
                     }
                 }
 
-                //add to conns
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Update UI here.
-                        MainController.addConnection(connfound, mc);
-                    }
-                });
+                //add to conns if socket conn was successful
+                if (connReachable) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Update UI here.
+                            MainController.addConnection(connfound, mc);
+                        }
+                    });
+                }
             }
 
             /*try {
