@@ -30,7 +30,7 @@ public class QuickCopy extends Application {
         stage.show();
         
         MainController controller = (MainController)loader.getController();
-        controller.sendScene(scene);
+        controller.sendScene(scene, stage);
   
     }
 

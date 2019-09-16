@@ -189,10 +189,10 @@ public class TServer extends Thread {
     public void halt() {
         try {
             running = false;
-            in.close();
-            out.close();
-            clientSocket.close();
-            serverSocket.close();
+ //           in.close();
+ //           out.close();
+  //          clientSocket.close();
+  //          serverSocket.close();
         } catch (Exception e) {
             System.out.println("Could not stop server: " + e.toString());
         }
