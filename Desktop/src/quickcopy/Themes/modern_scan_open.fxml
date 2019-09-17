@@ -14,17 +14,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="674.0" style="-fx-background-color: #ffffff00;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.Themes.modern_bar_openedController">
    <children>
-      <Rectangle arcHeight="25.0" arcWidth="23.0" fill="#51ab75" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
-      <Rectangle fill="#51ab75" height="13.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
-      <Rectangle fill="#51ab75" height="14.0" layoutX="657.0" layoutY="46.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
-      <Rectangle arcHeight="25.0" arcWidth="23.0" fill="#479566" height="30.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
+      <Rectangle fx:id="top_main" arcHeight="25.0" arcWidth="23.0" fill="#51ab75" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
+      <Rectangle fx:id="top_left" fill="#51ab75" height="13.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle fx:id="top_right" fill="#51ab75" height="14.0" layoutX="657.0" layoutY="46.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle fx:id="bottom" arcHeight="25.0" arcWidth="23.0" fill="#479566" height="30.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
       <Label id="username" fx:id="username" layoutX="29.0" layoutY="17.0" text="Joshua Bells" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="28.0" />
          </font>
       </Label>
-      <Rectangle fill="#479566" height="13.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
-      <Rectangle fill="#479566" height="14.0" layoutX="657.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle fx:id="bott_up_l" fill="#479566" height="13.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
+      <Rectangle fx:id="bott_up_r" fill="#479566" height="14.0" layoutX="657.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="17.0" />
       <Label layoutX="634.0" layoutY="18.0" rotate="-90.0" text="&gt;" textFill="WHITE">
          <font>
             <Font name="AirbusISIS" size="30.0" />

@@ -19,7 +19,9 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 
 /**
@@ -39,14 +41,61 @@ public class modern_bar_openedController implements Initializable {
     @FXML
     Label username;
 
+    @FXML
+    Rectangle top_main;
+    @FXML
+    Rectangle top_left;
+    @FXML
+    Rectangle top_right;
+    @FXML
+    Rectangle bottom;
+    @FXML
+    Rectangle bott_up_l;
+    @FXML
+    Rectangle bott_up_r;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    public void send(modern_bar_opened m, String userjn) {
+    public void send(modern_bar_opened m, String userjn, String color) {
         controller = m;
         username.setText(userjn);
+
+        switch (color) {
+            case "green":
+                top_main.setFill(Color.web("#51ab75"));
+                top_left.setFill(Color.web("#51ab75"));
+                top_right.setFill(Color.web("#51ab75"));
+                bottom.setFill(Color.web("#479566"));
+                bott_up_l.setFill(Color.web("#479566"));
+                bott_up_r.setFill(Color.web("#479566"));
+                break;
+            case "yellow":
+                top_main.setFill(Color.web("#FFC42086"));
+                top_left.setFill(Color.web("#FFC42086"));
+                top_right.setFill(Color.web("#FFC42086"));
+                bottom.setFill(Color.web("#FFC420"));
+                bott_up_l.setFill(Color.web("#FFC420"));
+                bott_up_r.setFill(Color.web("#FFC420"));
+                break;
+            case "aqua_blue":
+                top_main.setFill(Color.web("#00C3C9"));
+                top_left.setFill(Color.web("#00C3C9"));
+                top_right.setFill(Color.web("#00C3C9"));
+                bottom.setFill(Color.web("#00B5BB"));
+                bott_up_l.setFill(Color.web("#00B5BB"));
+                bott_up_r.setFill(Color.web("#00B5BB"));
+                break;
+            default:
+                top_main.setFill(Color.web("#51ab75"));
+                top_left.setFill(Color.web("#51ab75"));
+                top_right.setFill(Color.web("#51ab75"));
+                bottom.setFill(Color.web("#479566"));
+                bott_up_l.setFill(Color.web("#479566"));
+                bott_up_r.setFill(Color.web("#479566"));
+        }
     }
 
     @FXML
@@ -57,7 +106,7 @@ public class modern_bar_openedController implements Initializable {
     @FXML
     private void sendQuickMessage() {
         //send order to send message with attachments to modern_bar_opened
-        controller.sendQuickMessage(files,filenames, message.getText());
+        controller.sendQuickMessage(files, filenames, message.getText());
     }
 
     @FXML
@@ -110,5 +159,5 @@ public class modern_bar_openedController implements Initializable {
             selected = true;
         }
     }
-    
+
 }

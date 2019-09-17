@@ -17,7 +17,7 @@ import quickcopy.Connection;
 public class modern_bar_closed {
     Pane bar;
     modern control;
-    public modern_bar_closed(Connection conn, modern c){
+    public modern_bar_closed(Connection conn, modern c, String theme_color){
         control = c;
         //create FXML Loader
         FXMLLoader loader = new FXMLLoader();
@@ -28,7 +28,7 @@ public class modern_bar_closed {
         bar = (Pane) loader.load();
         modern_bar_closedController bc = loader.getController();
         bc.send(this);
-        bc.setAll(conn.getName());
+        bc.setAll(conn.getName(),theme_color);
         }catch(IOException e){
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }

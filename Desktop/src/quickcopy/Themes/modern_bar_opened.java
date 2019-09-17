@@ -25,7 +25,7 @@ public class modern_bar_opened {
     //connection this bar represents
     Connection represents;
 
-    public modern_bar_opened(Connection conn, modern c) {
+    public modern_bar_opened(Connection conn, modern c, String theme_color) {
         controller = c;
         represents = conn;
         FXMLLoader loader = new FXMLLoader();
@@ -33,7 +33,7 @@ public class modern_bar_opened {
         try {
             bar = (Pane) loader.load();
             modern_bar_openedController bc = loader.getController();
-            bc.send(this, represents.getName());
+            bc.send(this, represents.getName(), theme_color);
         } catch (IOException e) {
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }

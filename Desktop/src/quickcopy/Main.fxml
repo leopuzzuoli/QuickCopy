@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -106,14 +107,14 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/icons8-shutdown-64.png" />
                </image>
             </ImageView>
-            <CheckBox layoutX="109.0" layoutY="92.0" mnemonicParsing="false" text="Visible">
+            <CheckBox fx:id="visible" layoutX="109.0" layoutY="92.0" mnemonicParsing="false" onMouseClicked="#changeVisibility" selected="true" text="Visible">
                <font>
                   <Font size="16.0" />
                </font>
@@ -123,19 +124,22 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="429.0" layoutY="134.0" />
-            <Button layoutX="342.0" layoutY="439.0" mnemonicParsing="false" style="-fx-background-color: #0f9d58;" text="Save" textAlignment="CENTER">
+            <TextField fx:id="nameField" layoutX="429.0" layoutY="134.0" />
+            <Button layoutX="342.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#saveSettings" style="-fx-background-color: #0f9d58;" text="Save" textAlignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
                <effect>
                   <Glow />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <SplitMenuButton id="Home_dropdown" fx:id="home_dropdown" layoutX="429.0" layoutY="174.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" text="Welcome">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Welcome" />
+                <MenuItem mnemonicParsing="false" text="Scan" />
               </items>
                <effect>
                   <MotionBlur radius="0.07" />
@@ -146,9 +150,9 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Circle fill="DODGERBLUE" layoutX="117.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="DODGERBLUE" layoutX="180.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fill="DODGERBLUE" layoutX="247.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="#51ab75" layoutX="117.0" layoutY="252.0" onMouseClicked="#selectGreen" radius="22.0" stroke="#aeaeae" strokeType="INSIDE" />
+            <Circle fill="#00b5bb" layoutX="180.0" layoutY="252.0" onMouseClicked="#selectBlue" radius="22.0" stroke="#aeaeae" strokeType="INSIDE" />
+            <Circle fill="#ffc420" layoutX="247.0" layoutY="252.0" onMouseClicked="#selectYellow" radius="22.0" stroke="#aeaeae" strokeType="INSIDE" />
             <Circle fill="DODGERBLUE" layoutX="320.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="DODGERBLUE" layoutX="386.0" layoutY="253.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
          </children>

@@ -7,7 +7,6 @@ package quickcopy.Themes;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import quickcopy.Connection;
@@ -19,8 +18,10 @@ import quickcopy.ThemeInterface;
  */
 public class modern implements ThemeInterface {
 
-    public modern() {
-
+    String color = "a";
+    
+    public modern(String _color) {
+        color = _color;
     }
     //List containing all connections
     List<Connection> connections = new ArrayList<>();
@@ -46,10 +47,10 @@ public class modern implements ThemeInterface {
         }
         for (Connection c : conns) {
             //create closed bar
-            closed_bars.add(new modern_bar_closed(c, this));
+            closed_bars.add(new modern_bar_closed(c, this, color));
 
             //create open bar
-            open_bars.add(new modern_bar_opened(c, this));
+            open_bars.add(new modern_bar_opened(c, this, color));
 
             //add closed bar to list
             list.getChildren().add(closed_bars.get(closed_bars.size() - 1).getBar());

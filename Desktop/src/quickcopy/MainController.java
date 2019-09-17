@@ -25,7 +25,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -49,14 +53,14 @@ public class MainController implements Initializable {
     PServer server = new PServer(this);
     TServer TCPServer = new TServer(4446, this);
     private List<String> myIPs = new ArrayList<>();
-    String myname = "QuickCopy2";
+    String myname = "QuickCopy";
     static int myport = 4446;
     Ellipse topselector, middleselector, bottomselector, trafficselector;
     AnchorPane settingspane, scannerpane, packpane, welcome_pane, trafficpane;
     long timesince = 0;
     public ThemeInterface theme;
     static private List<Connection> connections = new ArrayList<>();
-    Preferences prefs = Preferences.userNodeForPackage(quickcopy.MainController.class);
+    Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
     Stage stage;
     @FXML
     VBox scanlist;
@@ -66,20 +70,33 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //select theme
+        //settings
         //get theme
-        String theme_selector = prefs.get("theme", "default");
+        String theme_selector = prefs.get("theme", "modern_green");
 
         //choose correct one
         switch (theme_selector) {
             case "circles":
                 theme = new Circles();
                 break;
+            case "modern_green":
+                theme = new modern("green");
+                break;
+            case "modern_yellow":
+                theme = new modern("yellow");
+                break;
+            case "modern_aqua":
+                theme = new modern("aqua_blue");
+                break;
             default:
-                theme = new modern();
+                theme = new modern("green");
                 break;
 
         }
+
+        //get username
+        myname = prefs.get("username", "QuickCopy");
+
         //get all IP addresses
         try {
             //list of addresses
@@ -130,7 +147,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void Scan(MouseEvent event) {
+    private void Scan() {
         //When Scan Icon is Clicked
 
         topselector.setVisible(true);
@@ -194,8 +211,63 @@ public class MainController implements Initializable {
         stage.show();
     }
 
+    //a restart is required if theme color is changed
+    private boolean restart_required = false;
+
+    @FXML
+    TextField nameField;
+
+    @FXML
+    void selectBlue() {
+        restart_required = true;
+        prefs.put("modern_aqua", "theme");
+    }
+
+    @FXML
+    void selectYellow() {
+        restart_required = true;
+        prefs.put("modern_yellow", "theme");
+    }
+
+    @FXML
+    void selectGreen() {
+        restart_required = true;
+        prefs.put("modern_green", "theme");
+    }
+
+    @FXML
+    void saveSettings() {
+        if (restart_required) {
+            Alert alert = new Alert(AlertType.CONFIRMATION, "A restart is required");
+            alert.showAndWait();
+        }
+        String new_username = nameField.getText();
+        if (!new_username.equals("")) {
+
+            prefs.put(new_username, "username");
+        }
+        power();
+    }
+
+    @FXML
+    CheckBox visible;
+    
+    @FXML
+    void changeVisibility(){
+        System.out.println(visible.isSelected());
+        if(visible.isSelected()){
+            server.start();
+        }
+        else{
+            server.halt();
+        }
+    }
+    
     private static final String imageLoc
             = "./src/quickcopy/images/temp_icob_w.png";
+
+    java.awt.SystemTray tray;
+    java.awt.TrayIcon trayIcon;
 
     private void addAppToTray() {
         try {
@@ -209,10 +281,10 @@ public class MainController implements Initializable {
             }
 
             // set up a system tray icon.
-            java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
+            tray = java.awt.SystemTray.getSystemTray();
             File file = new File(imageLoc);
             java.awt.Image image = ImageIO.read(file);
-            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(image);
+            trayIcon = new java.awt.TrayIcon(image);
 
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> Platform.runLater(this::show));
@@ -233,11 +305,7 @@ public class MainController implements Initializable {
             // tray icon (removing the tray icon will also shut down AWT).
             java.awt.MenuItem exitItem = new java.awt.MenuItem("Exit");
             exitItem.addActionListener(event -> {
-                server.halt();
-                TCPServer.halt();
-                Platform.exit();
-                tray.remove(trayIcon);
-                System.exit(0);
+                power();
             });
 
             // setup the popup menu for the application.
@@ -289,7 +357,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void PackMan(MouseEvent event) {
+    private void PackMan() {
         topselector.setVisible(false);
         middleselector.setVisible(true);
         bottomselector.setVisible(false);
@@ -303,7 +371,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void Settings(MouseEvent event) {
+    private void Settings() {
         topselector.setVisible(false);
         middleselector.setVisible(false);
         bottomselector.setVisible(true);
@@ -317,7 +385,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void Traffic(MouseEvent event) {
+    private void Traffic() {
         topselector.setVisible(false);
         middleselector.setVisible(false);
         bottomselector.setVisible(false);
@@ -344,9 +412,12 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void power(MouseEvent event) {
+    private void power() {
         //halt application
         server.halt();
+        TCPServer.halt();
+        Platform.exit();
+        tray.remove(trayIcon);
         System.exit(0);
     }
 
@@ -367,7 +438,38 @@ public class MainController implements Initializable {
         trafficpane = (AnchorPane) scene.lookup("#traffic");
 
         setdrawPackages();
-        //drawConnections();
+
+        //get home page
+        String home = prefs.get("home", "Welcome");
+        switch (home) {
+            case "Welcome":
+                topselector.setVisible(false);
+                middleselector.setVisible(false);
+                bottomselector.setVisible(false);
+                trafficselector.setVisible(false);
+
+                scannerpane.setVisible(false);
+                packpane.setVisible(false);
+                settingspane.setVisible(false);
+                welcome_pane.setVisible(true);
+                trafficpane.setVisible(false);
+                break;
+            case "Scan":
+                Scan();
+                break;
+            case "Package":
+                PackMan();
+                break;
+            case "Traffic":
+                Traffic();
+                break;
+            case "Settings":
+                Settings();
+                break;
+            default:
+                break;
+        }
+
     }
 
     public synchronized static void addConnection(Connection conn, MainController contr) {
