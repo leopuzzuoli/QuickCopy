@@ -194,9 +194,8 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    //TODO:relative path
     private static final String imageLoc
-            = "E:\\Documents\\Programming\\Java\\QuickCopy\\Desktop\\src\\quickcopy\\images\\temp_ico.png";
+            = "./src/quickcopy/images/temp_icob_w.png";
 
     private void addAppToTray() {
         try {
@@ -212,11 +211,6 @@ public class MainController implements Initializable {
             // set up a system tray icon.
             java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
             File file = new File(imageLoc);
-            if (file.exists()) {
-                System.out.println(" I EXITS ");
-            } else {
-                System.out.println("NO ");
-            }
             java.awt.Image image = ImageIO.read(file);
             java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(image);
 
