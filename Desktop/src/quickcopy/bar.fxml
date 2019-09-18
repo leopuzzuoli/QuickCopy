@@ -25,7 +25,7 @@
             <Font name="AirbusISIS" size="21.0" />
          </font>
       </Label>
-      <Rectangle id="bar_shape" arcHeight="29.0" arcWidth="33.0" fill="#ffffff00" height="55.0" stroke="#b5b5b5" strokeType="INSIDE" width="647.0" />
+      <Rectangle id="bar_shape" fx:id="backgroundShape" arcHeight="29.0" arcWidth="33.0" fill="#ffffff00" height="55.0" stroke="#b5b5b5" strokeType="INSIDE" width="647.0" />
       <Button id="bar_open" layoutX="299.0" layoutY="34.0" mnemonicParsing="false" onMousePressed="#open" opacity="0.0" prefHeight="4.0" prefWidth="28.0">
          <cursor>
             <Cursor fx:constant="HAND" />

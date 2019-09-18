@@ -16,12 +16,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="644.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.openbarController">
    <children>
-      <ImageView fitHeight="167.0" fitWidth="656.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="167.0" fitWidth="656.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../UI%20Designs/bar_opened.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="34.0" arcWidth="34.0" fill="#1f93ff00" height="164.0" stroke="#b5b5b5" strokeType="INSIDE" width="644.0" />
       <Label id="bar_date" fx:id="bar_date" layoutX="30.0" layoutY="46.0" prefHeight="17.0" prefWidth="111.0" text="23.01.2006 / 16:30" textFill="#b7b7b7">
          <font>
             <Font name="Calibri Light" size="12.5" />
@@ -37,6 +36,7 @@
             <Font name="AirbusISIS" size="21.0" />
          </font>
       </Label>
+      <Rectangle fx:id="backgroundShape" arcHeight="34.0" arcWidth="34.0" fill="#1f93ff00" height="164.0" stroke="#b5b5b5" strokeType="INSIDE" width="644.0" />
       <Pane id="add_button" fx:id="add_button" layoutX="113.0" layoutY="26.0" prefHeight="37.0" prefWidth="38.0">
          <children>
             <Rectangle arcHeight="13.0" arcWidth="13.0" fill="#dfdfdf" height="13.0" stroke="#707070" strokeType="INSIDE" width="33.0" />

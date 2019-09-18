@@ -251,23 +251,22 @@ public class MainController implements Initializable {
 
     @FXML
     CheckBox visible;
-    
+
     @FXML
-    void changeVisibility(){
+    void changeVisibility() {
         System.out.println(visible.isSelected());
-        if(visible.isSelected()){
+        if (visible.isSelected()) {
             server.start();
-        }
-        else{
+        } else {
             server.halt();
         }
     }
-    
+
     private static final String imageLoc
             = "./src/quickcopy/images/temp_icob_w.png";
-
+    
     java.awt.SystemTray tray;
-    java.awt.TrayIcon trayIcon;
+    public static java.awt.TrayIcon trayIcon;
 
     private void addAppToTray() {
         try {
