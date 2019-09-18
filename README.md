@@ -38,5 +38,21 @@ Apple has clearly put thought into this problem and came up with AirDrop, but in
 <p>
 Design desktop app ✓</br>
 Create desktop app *75% done*</br>
+<pre>
+ {
+ - Create UDP Server ✓
+ - Create TCP Server ✓
+ - Create TCP Client ✓
+ - Discover devices on network ✓
+ - Send text through socket ✓
+ - Implement Designs: Scan ✓, Package ✓ Traffic ✗, Settings ✓
+ - Send files ✓
+ - System bar ✓
+ - Notification ✗
+ - Encryption ✗
+ - Send packages ✗
+ - polishing ✗
+ }
+</pre>
 Design mobile app ✓</br>
 Create mobile app</p>
