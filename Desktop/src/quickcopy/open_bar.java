@@ -26,13 +26,7 @@ public class open_bar {
         bar = (Pane) loader.load();
         openbarController b = loader.getController();
         b.send(contr,this);
-        //set all settings and layout options
-        List<Connection> rec = pack.getRecipients();
-        String recipients_formatted = "TO:";
-        for(Connection c : rec){
-            recipients_formatted =(new StringBuilder()).append(recipients_formatted).append(c.getName() + ",").toString();
-        }
-        b.setAll(pack.getDate(), pack.getName(), recipients_formatted);
+        b.setAll(pack.getDate(), pack.getName(), pack.getFiles());
         }catch(IOException e){
             System.out.println("Could not load open_bar out of FXML,: " + e.toString());
         }

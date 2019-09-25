@@ -15,11 +15,6 @@
             <Font name="Calibri Light" size="18.0" />
          </font>
       </Label>
-      <Label id="bar_to" fx:id="bar_to" layoutX="25.0" layoutY="13.0" text="TO: Josh" textFill="#959595">
-         <font>
-            <Font name="Calibri Bold Italic" size="21.0" />
-         </font>
-      </Label>
       <Label layoutX="308.0" layoutY="34.0" rotate="-90.0" text="&lt;" textFill="#959595">
          <font>
             <Font name="AirbusISIS" size="21.0" />
@@ -30,9 +25,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField id="bat_title" fx:id="bar_title" layoutX="98.0" layoutY="14.0" prefHeight="27.0" prefWidth="252.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #888787;" text="Title goes here">
+      <TextField id="bat_title" fx:id="bar_title" layoutX="14.0" layoutY="7.0" prefHeight="27.0" prefWidth="252.0" style="-fx-background-color: #ffffff00; -fx-text-fill: #959595;" text="Title goes here">
          <font>
-            <Font name="Calibri Italic" size="14.0" />
+            <Font name="Calibri Bold Italic" size="21.0" />
          </font>
       </TextField>
    </children>

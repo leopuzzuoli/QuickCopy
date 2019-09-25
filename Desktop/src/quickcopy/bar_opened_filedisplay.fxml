@@ -7,8 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="backgroundShape" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.fileController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="27.0" stroke="#707070" strokeType="INSIDE" width="70.0">
          <fill>
@@ -20,12 +19,12 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Label layoutX="113.0" layoutY="6.0" text="File 1" textFill="#959595">
+      <Label fx:id="filename" layoutX="113.0" layoutY="6.0" text="File 1" textFill="#959595">
          <font>
             <Font name="Calibri Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="562.0" layoutY="11.0" text="22.3 MB" textFill="#a7a7a7">
+      <Label fx:id="filesize" layoutX="562.0" layoutY="11.0" text="22.3 MB" textFill="#a7a7a7">
          <font>
             <Font name="Cambria" size="12.0" />
          </font>

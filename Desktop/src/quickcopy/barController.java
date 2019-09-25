@@ -21,7 +21,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
-
 /**
  *
  * @author Chipleo
@@ -29,14 +28,15 @@ import javafx.scene.shape.Rectangle;
 public class barController implements Initializable {
 
     @FXML
-    Label bar_date,bar_to;
+    Label bar_date;
     @FXML
     TextField bar_title;
     @FXML
     Rectangle backgroundShape;
-    
+
     PackageManagerController contr;
     bar na;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -46,29 +46,37 @@ public class barController implements Initializable {
     private void open(MouseEvent event) {
         contr.open(na);
     }
-    
-    public void send(PackageManagerController _contr, bar our){
+
+    public void send(PackageManagerController _contr, bar our) {
         contr = _contr;
         na = our;
     }
-    
-    public void setAll(String date, String title, String recipient){
+
+    public void setAll(String date, String title) {
         //Add rightcllick
         ContextMenu contextmnu = new ContextMenu();
-        
+
         //TODO: there should be a divider between send and Delete
         MenuItem send_btn = new MenuItem("Send");
         MenuItem Delete_btn = new MenuItem("Delete");
-        
+
         contextmnu.getItems().addAll(send_btn, Delete_btn);
-        
+
         send_btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-        @Override
-        public void handle(ActionEvent event) {
-        System.out.println("Cut...");
-    }
-});
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Cut...");
+            }
+        });
+        Delete_btn.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Delete");
+                contr.delete(na);
+            }
+        });
         backgroundShape.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -77,16 +85,15 @@ public class barController implements Initializable {
                 }
             }
         });
-        
+
+        //add onTextChangedListener
+        bar_title.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("textfield changed from " + oldValue + " to " + newValue);
+        });
+
         bar_date.setText(date.split(" /")[0]);
-        bar_to.setText(recipient);
-        
+
         bar_title.setText(title);
-        //calculate label width
-        FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
-        double length = fontLoader.computeStringWidth(bar_to.getText(), bar_to.getFont());
-        //move label respectively
-        bar_title.setLayoutX(length + 20);
-        
+
     }
 }

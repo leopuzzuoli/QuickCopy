@@ -62,6 +62,7 @@ public class MainController implements Initializable {
     static private List<Connection> connections = new ArrayList<>();
     Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
     Stage stage;
+    public static String os = "Undetected/failure"; 
     @FXML
     VBox scanlist;
 
@@ -71,6 +72,29 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //settings
+        
+        //if first launch
+        if(prefs.get("flaunch", "true").equals("true")){
+            System.out.println("First Launch");
+            System.out.println("Detecting OS");
+            String _os_toDetect = System.getProperty("os.name").toLowerCase();
+            if(_os_toDetect.contains("win")){
+                os = "Windows";
+            }
+            if(_os_toDetect.contains("nux")){
+                os = "Linux";
+            }
+            if(_os_toDetect.contains("mac")){
+                os = "MacOs";
+            }
+            prefs.put("flaunch", "flase");
+            
+            //set shell context
+            if("Windows".equals(os)){
+                //TODO:here
+            }
+                
+        }
         //get theme
         String theme_selector = prefs.get("theme", "modern_green");
 
@@ -97,6 +121,7 @@ public class MainController implements Initializable {
         //get username
         myname = prefs.get("username", "QuickCopy");
 
+        
         //get all IP addresses
         try {
             //list of addresses
