@@ -9,7 +9,7 @@
 
 <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quickcopy.PackageManagerController">
    <content>
-      <Pane prefHeight="651.0" prefWidth="756.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="pane" prefHeight="651.0" prefWidth="756.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView fitHeight="503.0" fitWidth="841.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -18,7 +18,7 @@
             </ImageView>
             <Button id="add_new" layoutX="71.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#addPackage" prefHeight="25.0" prefWidth="24.0" style="-fx-opacity: 0;" />
             <Button id="add_new_button" layoutX="56.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#addPackage" prefHeight="54.0" prefWidth="646.0" style="-fx-opacity: 0;" />
-            <VBox id="package_list" fx:id="list" layoutX="55.0" layoutY="89.0" prefHeight="582.0" prefWidth="670.0" style="-fx-spacing: 8px;" />
+            <VBox id="package_list" fx:id="list" layoutX="55.0" layoutY="89.0" prefWidth="670.0" style="-fx-spacing: 8px;" />
          </children>
       </Pane>
    </content>

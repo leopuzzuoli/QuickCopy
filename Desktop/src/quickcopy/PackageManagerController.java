@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -25,6 +27,8 @@ public class PackageManagerController implements Initializable {
 
     @FXML
     ScrollPane scrollpane;
+    @FXML
+    Pane pane;
     @FXML
     private Button bar_add, bar_add_large;
     @FXML
@@ -76,9 +80,10 @@ public class PackageManagerController implements Initializable {
         list.getChildren().add(bars.get(bars.size() - 1).getBar());
         //create an open_bar
         open_bars.add(new open_bar(i, this));
-         System.out.println(open_bars.get(open_bars.size() - 1).getBar().getHeight());
+        System.out.println(open_bars.get(open_bars.size() - 1).getBar().getHeight());
         //prolongue scroll height
-        scrollpane.setPrefHeight(scrollpane.getHeight() + 55 + 8);
+        //scrollpane.setPrefHeight(scrollpane.getHeight() + 55 + 8);
+        refresh();
     }
 
     public void sendScene(ScrollPane scene) {
@@ -96,8 +101,7 @@ public class PackageManagerController implements Initializable {
         list.getChildren().set(index, open_bars.get(index).getBar());
 
         //extend scrollbar
-        System.out.println(open_bars.get(index).getBar().getHeight() - 55);
-        scrollpane.setPrefHeight(scrollpane.getPrefHeight() + (open_bars.get(index).getBar().getHeight() - 55));
+        refresh();
     }
 
     public void close(open_bar me) {
@@ -108,7 +112,7 @@ public class PackageManagerController implements Initializable {
         list.getChildren().set(index, bars.get(index).getBar());
 
         //retract scrollbar
-        scrollpane.setPrefHeight(scrollpane.getPrefHeight() - (open_bars.get(index).getBar().getHeight() - 55));
+        refresh();
     }
 
     public void delete(open_bar me) {
@@ -116,24 +120,32 @@ public class PackageManagerController implements Initializable {
         int index = open_bars.indexOf(me);
 
         //delete it
-        scrollpane.setPrefHeight(scrollpane.getPrefHeight() - open_bars.get(index).getBar().getHeight());
+        refresh();
         list.getChildren().remove(index);
         bars.remove(index);
         open_bars.remove(index);
-        
+
     }
 
     public void delete(bar me) {
         //get bar to delete
         int index = bars.indexOf(me);
         //delete it
-        scrollpane.setPrefHeight(scrollpane.getPrefHeight() - 55);
+        refresh();
         list.getChildren().remove(index);
         bars.remove(index);
         open_bars.remove(index);
     }
-    
-    public void refresh(open_bar na){
-        list.getChildren().set(open_bars.indexOf(na),na.getBar());
+
+    public void refresh(open_bar na) {
+        list.getChildren().set(open_bars.indexOf(na), na.getBar());
+        //set appropriate height
+        pane.setPrefHeight(list.getHeight() + 500);
+    }
+
+    void refresh() {
+        //set appropriate height
+        pane.setPrefHeight(list.getHeight() + 500);
+
     }
 }

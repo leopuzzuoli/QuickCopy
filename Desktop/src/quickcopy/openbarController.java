@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -134,22 +135,33 @@ public class openbarController implements Initializable {
             Files.add(f.getAbsolutePath());
 
             //diplay new
-            backgroundShape.setHeight(backgroundShape.getHeight() + 35);
-            background.setPrefHeight(background.getHeight() + 35);
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("bar_opened_filedisplay.fxml"));
                 filedisplays.add((Pane) loader.load());
                 fileController line = loader.getController();
-                line.setAll(f.getPath(), "50MB", this, filedisplays.get(filedisplays.size() - 1));
+                line.setAll(f.getName(), (f.length() / (1000f * 1000)) + " MB", this, filedisplays.get(filedisplays.size() - 1));
             } catch (IOException e) {
                 System.out.println("Could not load bar out of FXML,: " + e.toString());
             }
-
             verticality.getChildren().add(0, filedisplays.get(filedisplays.size() - 1));
 
         }
-        contr.refresh(na);
+        backgroundShape.setHeight(backgroundShape.getHeight() + (35 * _files.size() - 1));
+        background.setPrefHeight(background.getHeight() + (35 * _files.size() - 1));
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run(){
+                try{
+                Thread.sleep(1000);
+                }
+                catch(InterruptedException e){
+                    
+                }
+                        contr.refresh(na);
+            }
+        });
+       // contr.refresh(na);
     }
 
     void removeFile(Pane me) {

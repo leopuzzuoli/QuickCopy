@@ -26,7 +26,7 @@ How often have you struggled at sending a file between your phone and your compu
 We are in the year 2019 and yet it is still a frustration to send a small link or document from one device to another. The existing option, Bluetooth is a mess of it's own; pairing issues, achingly slow connections and a limited range mean that most people resort to sending themselves files over email or cloud storage, but is there really no better option?
 Apple has clearly put thought into this problem and came up with AirDrop, but in typical Apple style, they have reserved the use of the technology to their own, and only between their own devices.
 </p>
-<p> QuickCopy is meant to fix that. It is the solution for everyone. Compatible with all devices and using WIFI rather than Bluetooth it finds all enabled devices on your network in a heartbeat, and simpy allows you to send that link, or file without much hassle. <i>To and from any device you want.</i> It is what should be the standard in 2019.
+<p> QuickCopy is meant to fix that. It is the solution for everyone. Compatible with all devices and using WIFI rather than Bluetooth it finds all enabled devices on your network in a heartbeat, and simpy allows you to send links and files without much hassle.
 
 
 > <b>Note</b>: This product is still in alpha stage, one or more features may not work properly yet. See more under status tab.
