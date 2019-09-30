@@ -40,22 +40,12 @@
                         <Font size="18.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="10.0" layoutY="198.0" mnemonicParsing="false" text="DESKTOP - 245678">
+                  <CheckBox layoutX="43.0" layoutY="903.0" mnemonicParsing="false" text="DESKTOP - 245678">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox layoutX="50.0" layoutY="249.0" mnemonicParsing="false" text="DESKTOP - 245678">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox layoutX="50.0" layoutY="292.0" mnemonicParsing="false" text="DESKTOP - 245678">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox layoutX="50.0" layoutY="339.0" mnemonicParsing="false" text="DESKTOP - 245678">
+                  <CheckBox layoutX="43.0" layoutY="950.0" mnemonicParsing="false" text="DESKTOP - 245678">
                      <font>
                         <Font size="18.0" />
                      </font>

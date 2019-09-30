@@ -7,6 +7,7 @@ package quickcopy;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -49,7 +52,7 @@ public class openbarController implements Initializable {
     List<Pane> filedisplays = new ArrayList<>();
     @FXML
     VBox verticality;
-    List<String> Files = new ArrayList<>();
+    List<String> Files, filenames = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,13 +68,45 @@ public class openbarController implements Initializable {
         MenuItem send_btn = new MenuItem("Send");
         MenuItem Delete_btn = new MenuItem("Delete");
 
-        contextmnu.getItems().addAll(send_btn, Delete_btn);
+        //Sub-Menu
+        List<MenuItem> sublist = new ArrayList<>();
+        // create a menu 
+        Menu m = new Menu("Send to");
+        // create menuitems
+        List<Connection> conns = MainController.getConnections();
+        for (Connection c : conns) {
+            MenuItem item = new MenuItem(c.getName());
+            item.setId(c.getAddr() + ":" + c.getPort());
+            sublist.add(item);
+            m.getItems().add(item);
+            item.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    //send files to target
+                    TClient tclient = new TClient();
+                    try{
+                        int porttosend = Integer.parseInt(item.getId().split(":")[1]);
+                        tclient.startConnection(item.getId().split(":")[0], porttosend);
+                        tclient.sendAccept(filenames, Files);
+                        tclient.stopConnection();
+                    }
+                    catch(NumberFormatException | SocketTimeoutException e){
+                        System.out.println(e.toString());
+                    }
+                }
+            });
+        }
+
+        SeparatorMenuItem separator = new SeparatorMenuItem();
+        contextmnu.getItems().addAll(send_btn, m, separator, Delete_btn);
 
         send_btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Cut...");
+                //send files to target
+
             }
         });
 
@@ -104,7 +139,7 @@ public class openbarController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("bar_opened_filedisplay.fxml"));
             try {
-
+                //TODO:why is this here
                 filedisplays.add((Pane) loader.load());
                 fileController line = loader.getController();
                 line.setAll(file, "50MB", this, filedisplays.get(filedisplays.size() - 1));
@@ -133,7 +168,7 @@ public class openbarController implements Initializable {
         List<File> _files = fileChooser.showOpenMultipleDialog(add_button.getScene().getWindow());
         for (File f : _files) {
             Files.add(f.getAbsolutePath());
-
+            filenames.add(f.getName());
             //diplay new
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -149,19 +184,18 @@ public class openbarController implements Initializable {
         }
         backgroundShape.setHeight(backgroundShape.getHeight() + (35 * _files.size() - 1));
         background.setPrefHeight(background.getHeight() + (35 * _files.size() - 1));
-        Platform.runLater(new Runnable(){
+        Platform.runLater(new Runnable() {
             @Override
-            public void run(){
-                try{
-                Thread.sleep(1000);
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+
                 }
-                catch(InterruptedException e){
-                    
-                }
-                        contr.refresh(na);
+                contr.refresh(na);
             }
         });
-       // contr.refresh(na);
+        // contr.refresh(na);
     }
 
     void removeFile(Pane me) {
@@ -171,5 +205,5 @@ public class openbarController implements Initializable {
         background.setPrefHeight(background.getHeight() - 31);
         contr.refresh(na);
     }
-    
+
 }

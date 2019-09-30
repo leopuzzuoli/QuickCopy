@@ -21,21 +21,28 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import static jdk.nashorn.internal.codegen.ObjectClassGenerator.pack;
 import quickcopy.Themes.Circles;
 import quickcopy.Themes.modern;
 
@@ -62,7 +69,7 @@ public class MainController implements Initializable {
     static private List<Connection> connections = new ArrayList<>();
     Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
     Stage stage;
-    public static String os = "Undetected/failure"; 
+    public static String os = "Undetected/failure";
     @FXML
     VBox scanlist;
 
@@ -72,28 +79,27 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //settings
-        
         //if first launch
-        if(prefs.get("flaunch", "true").equals("true")){
+        if (prefs.get("flaunch", "true").equals("true")) {
             System.out.println("First Launch");
             System.out.println("Detecting OS");
             String _os_toDetect = System.getProperty("os.name").toLowerCase();
-            if(_os_toDetect.contains("win")){
+            if (_os_toDetect.contains("win")) {
                 os = "Windows";
             }
-            if(_os_toDetect.contains("nux")){
+            if (_os_toDetect.contains("nux")) {
                 os = "Linux";
             }
-            if(_os_toDetect.contains("mac")){
+            if (_os_toDetect.contains("mac")) {
                 os = "MacOs";
             }
             prefs.put("flaunch", "flase");
-            
+
             //set shell context
-            if("Windows".equals(os)){
+            if ("Windows".equals(os)) {
                 //TODO:here
             }
-                
+
         }
         //get theme
         String theme_selector = prefs.get("theme", "modern_green");
@@ -117,11 +123,9 @@ public class MainController implements Initializable {
                 break;
 
         }
-
         //get username
         myname = prefs.get("username", "QuickCopy");
 
-        
         //get all IP addresses
         try {
             //list of addresses
@@ -227,6 +231,41 @@ public class MainController implements Initializable {
         //We should log Sys.out/
     }
 
+    public void send(List<String> filePATHS, boolean toEndAfterwards) {
+        //filePATHS are the paths to the files to send, Connection is the user to send it to, toEndAfterwards is if the program should colse after calling function is finished
+
+        //open quick menu for sending
+        start(stage);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("send.fxml"));
+        try {
+
+            Pane bar = (Pane) loader.load();
+            barController n = loader.getController();
+        } catch (IOException e) {
+            System.out.println("Could not load bar out of FXML,: " + e.toString());
+        }
+
+    }
+
+    public void start(final Stage primaryStage) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(primaryStage);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("send.fxml"));
+        try {
+
+            Pane bar = (Pane) loader.load();
+            barController n = loader.getController();
+            Scene dialogScene = new Scene(bar, 300, 200);
+            dialog.setScene(dialogScene);
+            dialog.show();
+        } catch (IOException e) {
+            System.out.println("Could not load bar out of FXML,: " + e.toString());
+        }
+    }
+
     void saywhat() {
         System.out.println("what");
     }
@@ -288,8 +327,8 @@ public class MainController implements Initializable {
     }
 
     private static final String imageLoc
-            = "./src/quickcopy/images/temp_icob_w.png";
-    
+            = "./src/quickcopy/images/temp_ico.png";
+
     java.awt.SystemTray tray;
     public static java.awt.TrayIcon trayIcon;
 

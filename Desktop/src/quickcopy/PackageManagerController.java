@@ -36,6 +36,7 @@ public class PackageManagerController implements Initializable {
     private List<Package> packages = new ArrayList<>();
     private List<bar> bars = new ArrayList<>();
     private List<open_bar> open_bars = new ArrayList<>();
+    private MainController contr;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
