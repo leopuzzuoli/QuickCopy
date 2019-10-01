@@ -37,6 +37,7 @@ public class PackageManagerController implements Initializable {
     private List<bar> bars = new ArrayList<>();
     private List<open_bar> open_bars = new ArrayList<>();
     private MainController contr;
+    private int idCounter = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,6 +56,7 @@ public class PackageManagerController implements Initializable {
         //add all packages to package list
         int z = 0;
         for (Package box : packages) {
+            box.setId(idCounter); idCounter ++;
             //create new bar using package "box"
             bars.add(new bar(box, this));
             //add to list
@@ -72,7 +74,7 @@ public class PackageManagerController implements Initializable {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy / HH:mm");
         Date date = new Date();
         //create new empty package
-        Package i = new Package("Empty", formatter.format(date));
+        Package i = new Package("Empty", formatter.format(date), idCounter); idCounter++;
         //add to package list
         packages.add(i);
         //create a bar
@@ -136,6 +138,7 @@ public class PackageManagerController implements Initializable {
         list.getChildren().remove(index);
         bars.remove(index);
         open_bars.remove(index);
+        packages.remove(index);
     }
 
     public void refresh(open_bar na) {
@@ -149,4 +152,26 @@ public class PackageManagerController implements Initializable {
         pane.setPrefHeight(list.getHeight() + 500);
 
     }
+    
+    public void update(Package oldPack, Package newPack){
+        //replace and update oldPackage with newPackage
+        //find package with right ID
+        int id = oldPack.getId();
+        int index = -1;
+        for (Package p : packages){
+            if(p.getId() == id){
+                index = packages.indexOf(p);
+                break;
+            }
+        }
+        packages.set(index, newPack);
+        
+        //if we changed the name update the bars
+        if(!oldPack.getName().equals(newPack.getName())){
+            bars.get(index).updateName(newPack.getName());
+            open_bars.get(index).updateName(newPack.getName());
+        }
+    }
+    
+   
 }

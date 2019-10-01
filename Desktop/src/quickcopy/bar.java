@@ -17,17 +17,23 @@ import javafx.scene.layout.Pane;
 public class bar {
     
     Pane bar;
-        
+    PackageManagerController pmc;
+    Package storedPackage;
+    barController b;
+    
     public bar(Package pack, PackageManagerController contr){
+        //store pack and contr for unse in update
+        storedPackage = pack;
+        pmc = contr;
         
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("bar.fxml"));
         try{
             
         bar = (Pane) loader.load();
-        barController bar = loader.getController();
-        bar.send(contr, this);
-        bar.setAll(pack.getDate(), pack.getName());
+        b = loader.getController();
+        b.send(contr, this);
+        b.setAll(pack.getDate(), pack.getName());
         }catch(IOException e){
             System.out.println("Could not load bar out of FXML,: " + e.toString());
         }
@@ -36,5 +42,14 @@ public class bar {
     public Pane getBar(){
         return bar;
     }
-    
+    public void updatePackageName(String name){
+        //get new name of Package
+        Package p = new Package(name, storedPackage.getFiles(), storedPackage.getDate(), storedPackage.getId());
+        pmc.update(storedPackage, p);
+        storedPackage = p;
+    }
+        public void updateName(String title){
+        //update name in bar
+        b.setTitle(title);
+    }
 }

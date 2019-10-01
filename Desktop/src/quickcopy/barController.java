@@ -88,12 +88,17 @@ public class barController implements Initializable {
 
         //add onTextChangedListener
         bar_title.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("textfield changed from " + oldValue + " to " + newValue);
+            na.updatePackageName(newValue);
         });
 
         bar_date.setText(date.split(" /")[0]);
 
         bar_title.setText(title);
 
+    }
+    
+        public void setTitle(String title){
+        //set name/title of bar
+        bar_title.setText(title);
     }
 }

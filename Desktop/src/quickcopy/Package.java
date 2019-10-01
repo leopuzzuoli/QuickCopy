@@ -17,17 +17,20 @@ public class Package {
     private String name, date;
     List<Connection> recipients = new ArrayList<>();
     List<String> files = new ArrayList<>();
+    private int ID;
     
-    public Package(String _name, List<String> _files, List<Connection> _recipient, String _date){
+    public Package(String _name, List<String> _files, String _date, int id){
         name = _name;
-        recipients = _recipient;
+        ID = id;
+        //recipients = _recipient;
         date = _date;
         files = _files;
     }
     //for empty list construction
-    public Package(String _name, String _date){
+    public Package(String _name, String _date, int id){
         name = _name;
         date = _date;
+        ID = id;
     }
     
     public String getName(){
@@ -65,5 +68,12 @@ public class Package {
     public String getDate(){
         //date in format DD.MM.YY / HH:MM
         return date;
+    }
+    
+    public int getId(){
+        return ID;
+    }
+    public void setId(int id){
+        ID = id;
     }
 }

@@ -64,7 +64,6 @@ public class openbarController implements Initializable {
         //Add rightcllick
         ContextMenu contextmnu = new ContextMenu();
 
-        //TODO: there should be a divider between send and Delete
         MenuItem send_btn = new MenuItem("Send");
         MenuItem Delete_btn = new MenuItem("Delete");
 
@@ -85,13 +84,12 @@ public class openbarController implements Initializable {
                 public void handle(ActionEvent event) {
                     //send files to target
                     TClient tclient = new TClient();
-                    try{
+                    try {
                         int porttosend = Integer.parseInt(item.getId().split(":")[1]);
                         tclient.startConnection(item.getId().split(":")[0], porttosend);
                         tclient.sendAccept(filenames, Files);
                         tclient.stopConnection();
-                    }
-                    catch(NumberFormatException | SocketTimeoutException e){
+                    } catch (NumberFormatException | SocketTimeoutException e) {
                         System.out.println(e.toString());
                     }
                 }
@@ -126,23 +124,29 @@ public class openbarController implements Initializable {
                 }
             }
         });
-
+        //set text of title
         bar_title.setText(title);
+
+        //add listener to change on title of bar 
+        bar_title.textProperty().addListener((observable, oldValue, newValue) -> {
+            na.updatePackageName(newValue);
+        });
+
         bar_date.setText(date);
         generateBar(Files);
     }
 
-    private void generateBar(List<String> Files) {
-        for (String file : Files) {
+    private void generateBar(List<String> _filepahts) {
+        for (String file : _filepahts) {
             backgroundShape.setHeight(backgroundShape.getHeight() + 31);
             background.setPrefHeight(background.getHeight() + 31);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("bar_opened_filedisplay.fxml"));
             try {
-                //TODO:why is this here
+                //TODO:check if file exists and get name
                 filedisplays.add((Pane) loader.load());
                 fileController line = loader.getController();
-                line.setAll(file, "50MB", this, filedisplays.get(filedisplays.size() - 1));
+                line.setAll(file, file, "50MB", this, filedisplays.get(filedisplays.size() - 1));
             } catch (IOException e) {
                 System.out.println("Could not load bar out of FXML,: " + e.toString());
             }
@@ -175,13 +179,14 @@ public class openbarController implements Initializable {
                 loader.setLocation(getClass().getResource("bar_opened_filedisplay.fxml"));
                 filedisplays.add((Pane) loader.load());
                 fileController line = loader.getController();
-                line.setAll(f.getName(), (f.length() / (1000f * 1000)) + " MB", this, filedisplays.get(filedisplays.size() - 1));
+                line.setAll(f.getName(), f.getAbsolutePath(), (f.length() / (1000f * 1000)) + " MB", this, filedisplays.get(filedisplays.size() - 1));
             } catch (IOException e) {
                 System.out.println("Could not load bar out of FXML,: " + e.toString());
             }
             verticality.getChildren().add(0, filedisplays.get(filedisplays.size() - 1));
 
         }
+        //resize backgroundShape of open_bar
         backgroundShape.setHeight(backgroundShape.getHeight() + (35 * _files.size() - 1));
         background.setPrefHeight(background.getHeight() + (35 * _files.size() - 1));
         Platform.runLater(new Runnable() {
@@ -195,15 +200,28 @@ public class openbarController implements Initializable {
                 contr.refresh(na);
             }
         });
-        // contr.refresh(na);
+        //update Files to PackManController
+        na.updatePackageFiles(Files);
     }
 
-    void removeFile(Pane me) {
+    void removeFile(Pane me, String path) {
+        //remove Pane and resize backgroundShape of open_bar
         verticality.getChildren().remove(me);
         filedisplays.remove(me);
         backgroundShape.setHeight(backgroundShape.getHeight() - 31);
         background.setPrefHeight(background.getHeight() - 31);
         contr.refresh(na);
+        //remove file from Files and filenames
+        int index = Files.indexOf(path);
+        Files.remove(index);
+        filenames.remove(index);
+        //update Files to PackManController
+        na.updatePackageFiles(Files);
+    }
+    
+    public void setTitle(String title){
+        //set name/title of bar
+        bar_title.setText(title);
     }
 
 }

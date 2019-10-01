@@ -37,7 +37,7 @@ public class fileController implements Initializable {
     }
 
     @FXML
-    public void setAll(String _filename, String fileSize, openbarController contr, Pane me) {
+    public void setAll(String _filename, String _filepath, String fileSize, openbarController contr, Pane me) {
         myself = me;
         ContextMenu montextmnu = new ContextMenu();
         MenuItem Delete_btn = new MenuItem("Delete");
@@ -49,7 +49,7 @@ public class fileController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("removing " + filename.getText());
-                contr.removeFile(me);
+                contr.removeFile(me, _filepath);
             }
         });
         
