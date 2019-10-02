@@ -58,4 +58,8 @@ public class open_bar {
         //update name in open_bar
         b.setTitle(title);
     }
+    
+    public void updateConnections(){
+        b.updateConnections();
+    }
 }

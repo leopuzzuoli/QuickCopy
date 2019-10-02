@@ -53,6 +53,7 @@ public class openbarController implements Initializable {
     @FXML
     VBox verticality;
     List<String> Files, filenames = new ArrayList<>();
+    ContextMenu contextmnu;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,8 +62,22 @@ public class openbarController implements Initializable {
 
     public void setAll(String date, String title, List<String> _Files) {
         Files = _Files;
-        //Add rightcllick
-        ContextMenu contextmnu = new ContextMenu();
+        //Add ContextMenu
+        addContext();
+        //set text of title
+        bar_title.setText(title);
+
+        //add listener to change on title of bar 
+        bar_title.textProperty().addListener((observable, oldValue, newValue) -> {
+            na.updatePackageName(newValue);
+        });
+
+        bar_date.setText(date);
+        generateBar(Files);
+    }
+    
+    private void addContext(){
+        contextmnu = new ContextMenu();
 
         MenuItem send_btn = new MenuItem("Send");
         MenuItem Delete_btn = new MenuItem("Delete");
@@ -95,10 +110,10 @@ public class openbarController implements Initializable {
                 }
             });
         }
-
+        //create separator
         SeparatorMenuItem separator = new SeparatorMenuItem();
         contextmnu.getItems().addAll(send_btn, m, separator, Delete_btn);
-
+        //on send is clicked
         send_btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -107,7 +122,7 @@ public class openbarController implements Initializable {
 
             }
         });
-
+        //on delete clicked
         Delete_btn.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -116,6 +131,7 @@ public class openbarController implements Initializable {
                 contr.delete(na);
             }
         });
+        //add ContextMenu to backgroundShape
         backgroundShape.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -124,16 +140,6 @@ public class openbarController implements Initializable {
                 }
             }
         });
-        //set text of title
-        bar_title.setText(title);
-
-        //add listener to change on title of bar 
-        bar_title.textProperty().addListener((observable, oldValue, newValue) -> {
-            na.updatePackageName(newValue);
-        });
-
-        bar_date.setText(date);
-        generateBar(Files);
     }
 
     private void generateBar(List<String> _filepahts) {
@@ -218,10 +224,14 @@ public class openbarController implements Initializable {
         //update Files to PackManController
         na.updatePackageFiles(Files);
     }
-    
-    public void setTitle(String title){
+
+    public void setTitle(String title) {
         //set name/title of bar
         bar_title.setText(title);
     }
 
+    public void updateConnections() {
+        
+        addContext();
+    }
 }

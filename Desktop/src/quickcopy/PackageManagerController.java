@@ -102,7 +102,8 @@ public class PackageManagerController implements Initializable {
         int index = bars.indexOf(me);
         //set open_bar
         list.getChildren().set(index, open_bars.get(index).getBar());
-
+        //Update send to's
+        open_bars.get(index).updateConnections();
         //extend scrollbar
         refresh();
     }
