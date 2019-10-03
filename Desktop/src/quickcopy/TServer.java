@@ -108,7 +108,7 @@ public class TServer extends Thread {
                                 //handle recieved message
                                 System.out.println(received.substring(3));
                                 //create notification
-                                if (SystemTray.isSupported()) {
+                                if (SystemTray.isSupported() && !MainController.os.equals("mac")) {
                                         //gets the sender of the message
                                         String sender = "A user ";
                                         List<Connection> conns = MainController.getConnections();
@@ -124,7 +124,19 @@ public class TServer extends Thread {
                                         //Add message to received screen
                                         //check if link
 
-                                } else {
+                                }else if(MainController.os.equals("mac")){
+                                    //gets the sender of the message
+                                        String sender = "A user ";
+                                        List<Connection> conns = MainController.getConnections();
+                                        for (Connection c : conns) {
+                                            if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
+                                                sender = c.getName() + " ";
+                                            }
+                                        }
+                                    //Display notification
+                                    Runtime.getRuntime().exec(new String[] {"osascript", "-e", "display notification \"",received.substring(3), "\" with title \"",sender , "\" sent you a message"});
+                                }
+                                else {
                                     System.err.println("System tray not supported!");
                                 }
 
