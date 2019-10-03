@@ -89,7 +89,7 @@ public class MainController implements Initializable {
                 os = "Linux";
             }
             if (_os_toDetect.contains("mac")) {
-                os = "MacOs";
+                os = "Mac";
             }
             prefs.put("flaunch", "flase");
 

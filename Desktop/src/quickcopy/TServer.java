@@ -108,7 +108,7 @@ public class TServer extends Thread {
                                 //handle recieved message
                                 System.out.println(received.substring(3));
                                 //create notification
-                                if (SystemTray.isSupported() && !MainController.os.equals("mac")) {
+                                if (SystemTray.isSupported() && !MainController.os.equals("Mac")) {
                                         //gets the sender of the message
                                         String sender = "A user ";
                                         List<Connection> conns = MainController.getConnections();
@@ -124,7 +124,7 @@ public class TServer extends Thread {
                                         //Add message to received screen
                                         //check if link
 
-                                }else if(MainController.os.equals("mac")){
+                                }else if(MainController.os.equals("Mac")){
                                     //gets the sender of the message
                                         String sender = "A user ";
                                         List<Connection> conns = MainController.getConnections();
