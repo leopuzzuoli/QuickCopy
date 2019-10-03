@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class QuickCopy extends Application {
 
+    static String[] arg;
+    
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
@@ -29,7 +31,7 @@ public class QuickCopy extends Application {
         stage.show();
         
         MainController controller = (MainController)loader.getController();
-        controller.sendScene(scene, stage);
+        controller.sendScene(scene, stage, arg);
   
     }
 
@@ -37,6 +39,7 @@ public class QuickCopy extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        arg = args;
         launch(args);
     }
 }

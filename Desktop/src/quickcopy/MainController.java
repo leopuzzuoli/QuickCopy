@@ -12,24 +12,23 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -38,11 +37,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import static jdk.nashorn.internal.codegen.ObjectClassGenerator.pack;
 import quickcopy.Themes.Circles;
 import quickcopy.Themes.modern;
 
@@ -72,7 +69,8 @@ public class MainController implements Initializable {
     public static String os = "Undetected/failure";
     @FXML
     VBox scanlist;
-
+    String[] args;
+    
     /**
      * Initializes the controller class.
      */
@@ -160,19 +158,6 @@ public class MainController implements Initializable {
         } catch (UnknownHostException e) {
             System.out.println(" (error retrieving server host name)");
         }
-        System.out.println(myIPs);
-        server.setIP(myIPs);
-        server.setHostname(myname);
-        server.start();
-        TCPServer.start();
-        server.setPort(myport);
-
-        //add SystemTray ico
-        // instructs the javafx system not to exit implicitly when the last application window is shut.
-        Platform.setImplicitExit(false);
-        // sets up the tray icon (using awt code run on the swing thread).
-        javax.swing.SwingUtilities.invokeLater(this::addAppToTray);
-
     }
 
     @FXML
@@ -483,8 +468,53 @@ public class MainController implements Initializable {
         tray.remove(trayIcon);
         System.exit(0);
     }
+    
+        private void power(boolean a) {
+        //halt application
+        //server.halt();
+        //TCPServer.halt();
+        Platform.exit();
+        //tray.remove(trayIcon);
+        System.exit(0);
+    }
 
-    public void sendScene(Scene scene_l, Stage s) {
+    public void sendScene(Scene scene_l, Stage s, String[] args) {
+        //does an instance of this program already exist on this omputer?
+        boolean instanceRunning = true;
+        //try to connect to own socket to see if a connection is possible
+        TClient tc = new TClient();
+        try{
+        tc.startConnection(myIPs.get(0), myport);
+        }catch(SocketTimeoutException e){
+            instanceRunning = false;
+            System.out.println("Single instance detected");
+        }
+        if(instanceRunning){
+            System.out.println("Multiple Instances of program detected");
+            //does the program have CLArguments?
+            if(args.length > 1){
+                System.out.println(args);
+                //send files after user selects destination
+                send(Arrays.asList(args), true);
+            }
+            else{
+                power(true);
+            }
+        }
+        //start all
+        System.out.println(myIPs);
+        server.setIP(myIPs);
+        server.setHostname(myname);
+        server.start();
+        TCPServer.start();
+        server.setPort(myport);
+
+        //add SystemTray ico
+        // instructs the javafx system not to exit implicitly when the last application window is shut.
+        Platform.setImplicitExit(false);
+        // sets up the tray icon (using awt code run on the swing thread).
+        javax.swing.SwingUtilities.invokeLater(this::addAppToTray);
+        
         scene = scene_l;
         stage = s;
         //get all interactables
