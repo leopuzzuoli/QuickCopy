@@ -37,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -77,10 +78,10 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //settings
-        //if first launch
-        if (prefs.get("flaunch", "true").equals("true")) {
-            System.out.println("First Launch");
-            System.out.println("Detecting OS");
+        //test loading font for mac (and maybe Linux)
+        Font.loadFont(QuickCopy.class.getResource("/fonts/AirbusISIS.ttf").toExternalForm(), 10);
+        //detect os
+        System.out.println("Detecting OS");
             String _os_toDetect = System.getProperty("os.name").toLowerCase();
             if (_os_toDetect.contains("win")) {
                 os = "Windows";
@@ -91,8 +92,11 @@ public class MainController implements Initializable {
             if (_os_toDetect.contains("mac")) {
                 os = "Mac";
             }
-            prefs.put("flaunch", "flase");
-
+            prefs.put("flaunch", "false");
+            
+        //if first launch
+        if (prefs.get("flaunch", "true").equals("true")) {
+            System.out.println("First Launch");
             //set shell context
             if ("Windows".equals(os)) {
                 //TODO:here

@@ -109,34 +109,34 @@ public class TServer extends Thread {
                                 System.out.println(received.substring(3));
                                 //create notification
                                 if (SystemTray.isSupported() && !MainController.os.equals("Mac")) {
-                                        //gets the sender of the message
-                                        String sender = "A user ";
-                                        List<Connection> conns = MainController.getConnections();
-                                        for (Connection c : conns) {
-                                            if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
-                                                sender = c.getName() + " ";
-                                            }
-                                        }
-                                        //get tray from MainController
-                                        TrayIcon trayIcon = MainController.trayIcon;
-                                        //Display notification
-                                        trayIcon.displayMessage(sender + "sent you a message", received.substring(3), MessageType.INFO);
-                                        //Add message to received screen
-                                        //check if link
-
-                                }else if(MainController.os.equals("Mac")){
                                     //gets the sender of the message
-                                        String sender = "A user ";
-                                        List<Connection> conns = MainController.getConnections();
-                                        for (Connection c : conns) {
-                                            if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
-                                                sender = c.getName() + " ";
-                                            }
+                                    String sender = "A user ";
+                                    List<Connection> conns = MainController.getConnections();
+                                    for (Connection c : conns) {
+                                        if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
+                                            sender = c.getName() + " ";
                                         }
+                                    }
+                                    //get tray from MainController
+                                    TrayIcon trayIcon = MainController.trayIcon;
                                     //Display notification
-                                    Runtime.getRuntime().exec(new String[] {"osascript", "-e", "display notification \"",received.substring(3), "\" with title \"",sender , "\" sent you a message"});
-                                }
-                                else {
+                                    trayIcon.displayMessage(sender + "sent you a message", received.substring(3), MessageType.INFO);
+                                    //Add message to received screen
+                                    //check if link
+
+                                } else if (MainController.os.equals("Mac")) {
+                                    //gets the sender of the message
+                                    String sender = "A user ";
+                                    List<Connection> conns = MainController.getConnections();
+                                    for (Connection c : conns) {
+                                        if (clientSocket.getInetAddress().toString().substring(1).equals(c.getAddr())) {
+                                            sender = c.getName() + " ";
+                                        }
+                                    }
+                                    //TODO: possible arbitrary code execution
+                                    //Display notification
+                                    Runtime.getRuntime().exec(new String[]{"osascript", "-e", "display notification \" " + received.substring(3) + "\" with title \"" + sender + "sent you a message\" sound name \"Frog\""});
+                                } else {
                                     System.err.println("System tray not supported!");
                                 }
 

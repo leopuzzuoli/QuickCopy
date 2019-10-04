@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
@@ -43,7 +44,11 @@ public class TClient {
 
         } catch (SocketTimeoutException e) {
             throw new SocketTimeoutException();
-        } catch (IOException e) {
+        }catch(ConnectException e){
+            //for when a connection doesnt timeout but is actively refused. We handle them the same way so we can group them
+            throw new SocketTimeoutException();
+        }
+        catch (IOException e) {
             System.out.println("Error in TClient: " + e.toString());
         }
         try {
