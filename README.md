@@ -48,7 +48,7 @@ Create desktop app *75% done*</br>
  - Implement Designs: Scan ✓, Package ✓ Traffic ✗, Settings ✓
  - Send files ✓
  - System bar ✓
- - Notification ✗
+ - Notification ✓
  - Encryption ✗
  - Send packages ✗
  - polishing ✗
