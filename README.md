@@ -32,7 +32,7 @@ Apple has clearly put thought into this problem and came up with AirDrop, but in
 > <b>Note</b>: This product is still in alpha stage, one or more features may not work properly yet. See more under status tab.
 
 <p align="center"><h4 align = "left"> Installation</h4></p>
-<p> There are no installers for QuickCopy at the moment, expect the release for Windows, Linux and MacOS soon. In the meantime star or watch this project to get notified first at release, otherwise you can download and compile it, but beware it is not in a polished state</p>
+<p> The alpha version for QuickCopy in available under the releases tab. To be notified on full-release star or watch this project. Otherwise you can download and compile the latest source code</p>
 
 <p align="center"><h4 align = "left"> Status</h4></p>
 <p>
