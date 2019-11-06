@@ -17,6 +17,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +38,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -47,7 +47,7 @@ import quickcopy.Themes.modern;
 /**
  * FXML Controller class
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class MainController implements Initializable {
 
@@ -79,7 +79,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //settings
         //test loading font for mac (and maybe Linux)
-        Font.loadFont(QuickCopy.class.getResource("/fonts/AirbusISIS.ttf").toExternalForm(), 10);
+        //Font.loadFont(QuickCopy.class.getResource("/fonts/AirbusISIS.ttf").toExternalForm(), 10);
         //detect os
         System.out.println("Detecting OS");
             String _os_toDetect = System.getProperty("os.name").toLowerCase();
@@ -127,6 +127,11 @@ public class MainController implements Initializable {
         }
         //get username
         myname = prefs.get("username", "QuickCopy");
+        //if userame is base64 encoded decode it
+        if(!myname.equals("QuickCopy")){
+        byte[] decodedBytes = Base64.getDecoder().decode(myname);
+        myname = new String(decodedBytes);
+        }
 
         //get all IP addresses
         try {
@@ -296,7 +301,7 @@ public class MainController implements Initializable {
         }
         String new_username = nameField.getText();
         if (!new_username.equals("")) {
-
+            new_username = Base64.getEncoder().encodeToString(new_username.getBytes());
             prefs.put(new_username, "username");
         }
         power();

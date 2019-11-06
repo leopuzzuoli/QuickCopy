@@ -13,7 +13,7 @@ import quickcopy.ThemeInterface;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class Default implements ThemeInterface {
     public Default(){

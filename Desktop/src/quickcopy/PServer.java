@@ -12,12 +12,13 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javafx.application.Platform;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class PServer extends Thread {
 
@@ -25,7 +26,7 @@ public class PServer extends Thread {
     private boolean running;
     private byte[] buf = new byte[256];
 
-    private String myname = "QuickCopy";
+    private String myname_encoded = "UXVpY2tDb3B5";
     private List<String> myIPs = new ArrayList<>();
     private int myPort;
 
@@ -86,8 +87,8 @@ public class PServer extends Thread {
                     TClient tc = new TClient();
                     try {
                         tc.startConnection(connfound.getAddr(), connfound.getPort());
-                        System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname);
-                        tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname);
+                        System.out.println("-> QC responding from " + addr + ":" + myPort + ":" + myname_encoded);
+                        tc.sendMessage("QC responding from " + addr + ":" + myPort + ":" + myname_encoded);
                         tc.stopConnection();
                         connReachable = true;
                     } catch (SocketTimeoutException e) {
@@ -130,6 +131,6 @@ public class PServer extends Thread {
     }
 
     public void setHostname(String Hostname) {
-        myname = Hostname;
+        myname_encoded = Base64.getEncoder().encodeToString(Hostname.getBytes());
     }
 }

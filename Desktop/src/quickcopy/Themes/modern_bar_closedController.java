@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class modern_bar_closedController implements Initializable{
     @FXML

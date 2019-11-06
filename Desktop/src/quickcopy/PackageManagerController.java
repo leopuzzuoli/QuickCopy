@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class PackageManagerController implements Initializable {
 

@@ -90,16 +90,16 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane id="traffic" layoutX="122.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane id="traffic" layoutX="122.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
          <children>
             <TabPane prefHeight="503.0" prefWidth="772.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="                                                     Sent                                                     ">
+                <Tab text="                                               Received                                               ">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
-                <Tab text="                                               Received                                               ">
+                <Tab text="                                                     Sent                                                     ">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
@@ -107,7 +107,7 @@
               </tabs>
             </TabPane>
          </children></AnchorPane>
-      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane id="settings" layoutX="121.0" prefHeight="503.0" prefWidth="772.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <ImageView id="shutdown_logo" fitHeight="64.0" fitWidth="64.0" layoutX="660.0" layoutY="14.0" onMouseClicked="#power" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -155,6 +155,11 @@
             <Circle fill="#ffc420" layoutX="247.0" layoutY="252.0" onMouseClicked="#selectYellow" radius="22.0" stroke="#aeaeae" strokeType="INSIDE" />
             <Circle fill="DODGERBLUE" layoutX="320.0" layoutY="252.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="DODGERBLUE" layoutX="386.0" layoutY="253.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="95.0" layoutY="300.0" text="Alpha 0.12" textFill="#808080">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ImageView id="scanner_logo" fitHeight="61.0" fitWidth="61.0" layoutX="29.0" layoutY="63.0" onMousePressed="#Scan" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 50%;">

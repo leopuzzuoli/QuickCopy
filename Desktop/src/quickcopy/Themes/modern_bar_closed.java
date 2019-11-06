@@ -12,7 +12,7 @@ import quickcopy.Connection;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class modern_bar_closed {
     Pane bar;

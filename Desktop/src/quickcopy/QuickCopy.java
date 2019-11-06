@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class QuickCopy extends Application {
 

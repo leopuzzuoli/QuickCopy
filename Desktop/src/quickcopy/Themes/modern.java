@@ -14,7 +14,7 @@ import quickcopy.ThemeInterface;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class modern implements ThemeInterface {
 

@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class bar {
     

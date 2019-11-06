@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public interface ThemeInterface {
     public void draw(List<Connection> conns, AnchorPane Scanner, VBox _list);

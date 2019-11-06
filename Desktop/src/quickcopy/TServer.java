@@ -5,8 +5,6 @@
  */
 package quickcopy;
 
-import com.sun.javafx.tk.Toolkit;
-import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
@@ -20,6 +18,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import javafx.application.Platform;
@@ -28,16 +27,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
-//TODO: proper error handling, : not allowed in name
 //whem server cannot exit, force close, when server cannot start, see what can be done or exit app, better etc.
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class TServer extends Thread {
 
-    //TODO: Path
-    String PATH = "E:\\Documents\\Programming\\Java\\";
+    //if no download folder was set
+    String PATH =  System.getProperty("user.dir") + "\\files";
     private int port;
     private boolean running = true;
     private final List<String> acceptedFiles = new ArrayList<>();
@@ -73,8 +71,7 @@ public class TServer extends Thread {
             run();
         }
     }
-
-    //TODO: Put handling on different thread, the current way we can only accept 1 conn at once plus we need to reconenct for every file we send
+    
     private void waitandcommunicate() {
         while (running) {
             try {
@@ -94,8 +91,10 @@ public class TServer extends Thread {
                                 String[] all = i_i[1].split(":");
 
                                 Connection newConn = new Connection(all[0], Integer.parseInt(all[1]));
-                                //checks should be made for name
-                                newConn.setName(all[2]);
+                                //name is base64 encoded
+                                byte[] decodedBytes = Base64.getDecoder().decode(all[2]);
+                                String decodedname = new String(decodedBytes);
+                                newConn.setName(decodedname);
 
                                 Platform.runLater(new Runnable() {
                                     @Override
@@ -134,8 +133,35 @@ public class TServer extends Thread {
                                         }
                                     }
                                     //TODO: possible arbitrary code execution
+                                    //prevent RCE aka. clean input
+                                    String message = received.substring(3); 
+                                    message = message.replace("|", "\\|");
+                                    message = message.replace("&", "\\&");
+                                    message = message.replace(":", "\\:");
+                                    message = message.replace(";", "\\;");
+                                    message = message.replace("(", "\\(");
+                                    message = message.replace(")", "\\)");
+                                    message = message.replace("<", "\\<");
+                                    message = message.replace(">", "\\>");
+                                    message = message.replace("~", "\\~");
+                                    message = message.replace("*", "\\*");
+                                    message = message.replace("@", "\\@");
+                                    message = message.replace("?", "\\?");
+                                    message = message.replace("!", "\\!");
+                                    message = message.replace("$", "\\$");
+                                    message = message.replace("#", "\\#");
+                                    message = message.replace("[", "\\[");
+                                    message = message.replace("]", "\\]");
+                                    message = message.replace("{", "\\{");
+                                    message = message.replace("}", "\\}");
+                                    message = message.replace("\\", "\\\\");
+                                    message = message.replace("/", "\\/");
+                                    message = message.replace("'", "\\'");
+                                    message = message.replace("\"", "\\\"");
+                                    message = message.replace("`", "\\`");
+                                    
                                     //Display notification
-                                    Runtime.getRuntime().exec(new String[]{"osascript", "-e", "display notification \" " + received.substring(3) + "\" with title \"" + sender + "sent you a message\" sound name \"Frog\""});
+                                    Runtime.getRuntime().exec(new String[]{"osascript", "-e", "display notification \" " + message + "\" with title \"" + sender + "sent you a message\" sound name \"Frog\""});
                                 } else {
                                     System.err.println("System tray not supported!");
                                 }
@@ -225,10 +251,6 @@ public class TServer extends Thread {
     public void halt() {
         try {
             running = false;
-            //           in.close();
-            //           out.close();
-            //          clientSocket.close();
-            //          serverSocket.close();
         } catch (Exception e) {
             System.out.println("Could not stop server: " + e.toString());
         }

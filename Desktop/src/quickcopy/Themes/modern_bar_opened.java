@@ -5,9 +5,9 @@
  */
 package quickcopy.Themes;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.util.Base64;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -16,7 +16,7 @@ import quickcopy.TClient;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class modern_bar_opened {
 
@@ -56,6 +56,7 @@ public class modern_bar_opened {
             } catch (SocketTimeoutException e) {
                 System.out.println(e.toString());
             }
+            //encode message to Base64 to prevent escaping
             client.sendMessage("msg " + message);
             client.stopConnection();
         } else {

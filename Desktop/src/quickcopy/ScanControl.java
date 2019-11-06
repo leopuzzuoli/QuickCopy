@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 
 public class ScanControl {

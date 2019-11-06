@@ -7,7 +7,7 @@ package quickcopy;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class Connection {
 

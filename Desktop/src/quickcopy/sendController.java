@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class sendController implements Initializable{
     @Override

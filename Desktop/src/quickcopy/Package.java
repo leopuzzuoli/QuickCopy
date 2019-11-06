@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class Package {
     

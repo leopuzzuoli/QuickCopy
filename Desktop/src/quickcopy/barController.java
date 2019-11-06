@@ -23,7 +23,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class barController implements Initializable {
 
@@ -56,7 +56,6 @@ public class barController implements Initializable {
         //Add rightcllick
         ContextMenu contextmnu = new ContextMenu();
 
-        //TODO: there should be a divider between send and Delete
         MenuItem send_btn = new MenuItem("Send");
         MenuItem Delete_btn = new MenuItem("Delete");
 

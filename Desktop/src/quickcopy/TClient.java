@@ -16,11 +16,12 @@ import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Base64;
 import java.util.List;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 //actually handle exceptions
 public class TClient {
@@ -61,16 +62,10 @@ public class TClient {
     }
 
     public void sendMessage(String msg) {
-        //TODO: no handling should be required here
-        try {
             out.println(msg);
-        } catch (NullPointerException e) {
-            
-        }
     }
 
     public void sendAccept(List<String> files, List<String> filepaths) {
-        //TODO: files with spaces in them cannot be sent yet
         //if files and filepaths are not the same length, someone is trying to smuggle extra files
         sendMessage("Accept " + files);
         try {
@@ -88,6 +83,8 @@ public class TClient {
                     //TODO: connection is stopped and started for each new file, maybe flush and send?
                     stopConnection();
                     startConnection(Address, po);
+                    //remove spaces
+                    files.set(z,files.get(z).replace(" ", "_"));
                     sendMessage("file " + files.get(z) + " " + acfile.length());
                     z++;
                     DataOutputStream dos = new DataOutputStream(clientSocket.getOutputStream());

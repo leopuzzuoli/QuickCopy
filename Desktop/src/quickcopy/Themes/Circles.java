@@ -13,7 +13,7 @@ import quickcopy.ThemeInterface;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuolio Puzzuoli
  */
 public class Circles implements ThemeInterface{
     public Circles(){

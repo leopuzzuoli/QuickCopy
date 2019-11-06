@@ -33,7 +33,7 @@ import javafx.stage.FileChooser;
 
 /**
  *
- * @author Chipleo
+ * @author Leonardo Puzzuoli
  */
 public class openbarController implements Initializable {
 
