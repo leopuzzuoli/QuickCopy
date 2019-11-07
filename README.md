@@ -50,7 +50,7 @@ Create desktop app *75% done*</br>
  - System bar ✓
  - Notification ✓
  - Encryption ✗
- - Send packages ✗
+ - Send packages ✓
  - polishing ✗
  }
 </pre>
