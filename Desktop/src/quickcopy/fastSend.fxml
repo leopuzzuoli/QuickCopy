@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ffff5500;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="94.0" arcWidth="94.0" fill="WHITE" height="107.0" layoutX="457.0" layoutY="415.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1006.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Rectangle>
+      <TextField layoutX="511.0" layoutY="428.0" prefHeight="79.0" prefWidth="887.0" promptText="Write message" style="-fx-background-color: #ffffff00; -fx-text-fill: #2D2D2D;">
+         <font>
+            <Font name="Segoe UI" size="20.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

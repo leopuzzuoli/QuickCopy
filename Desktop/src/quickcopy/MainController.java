@@ -5,6 +5,8 @@
  */
 package quickcopy;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -27,6 +29,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -40,6 +43,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Ellipse;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 import quickcopy.Themes.Circles;
 import quickcopy.Themes.modern;
@@ -71,7 +75,7 @@ public class MainController implements Initializable {
     @FXML
     VBox scanlist;
     String[] args;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -82,18 +86,18 @@ public class MainController implements Initializable {
         //Font.loadFont(QuickCopy.class.getResource("/fonts/AirbusISIS.ttf").toExternalForm(), 10);
         //detect os
         System.out.println("Detecting OS");
-            String _os_toDetect = System.getProperty("os.name").toLowerCase();
-            if (_os_toDetect.contains("win")) {
-                os = "Windows";
-            }
-            if (_os_toDetect.contains("nux")) {
-                os = "Linux";
-            }
-            if (_os_toDetect.contains("mac")) {
-                os = "Mac";
-            }
-            prefs.put("flaunch", "false");
-            
+        String _os_toDetect = System.getProperty("os.name").toLowerCase();
+        if (_os_toDetect.contains("win")) {
+            os = "Windows";
+        }
+        if (_os_toDetect.contains("nux")) {
+            os = "Linux";
+        }
+        if (_os_toDetect.contains("mac")) {
+            os = "Mac";
+        }
+        prefs.put("flaunch", "false");
+
         //if first launch
         if (prefs.get("flaunch", "true").equals("true")) {
             System.out.println("First Launch");
@@ -128,9 +132,9 @@ public class MainController implements Initializable {
         //get username
         myname = prefs.get("username", "QuickCopy");
         //if userame is base64 encoded decode it
-        if(!myname.equals("QuickCopy")){
-        byte[] decodedBytes = Base64.getDecoder().decode(myname);
-        myname = new String(decodedBytes);
+        if (!myname.equals("QuickCopy")) {
+            byte[] decodedBytes = Base64.getDecoder().decode(myname);
+            myname = new String(decodedBytes);
         }
 
         //get all IP addresses
@@ -167,6 +171,42 @@ public class MainController implements Initializable {
         } catch (UnknownHostException e) {
             System.out.println(" (error retrieving server host name)");
         }
+
+        //start updateConnections
+        updateConnections();
+    }
+
+    private void broadcast_scan() {
+        //do this on new Thread in order not to block UI
+        new Thread() {
+            @Override
+            public void run() {
+
+                //Find All Broadcast Addresses
+                System.out.println("STARTING QUERY");
+                timesince = System.nanoTime() / 1000000000 - timesince;
+                try {
+                    channels = listAllBroadcastAddresses();
+                } catch (SocketException e) {
+                    System.out.println("SocketException: " + e.toString());
+                }
+                System.out.println("QUERY OVER");
+                //Broadcast "QC at IP:port" to all Addresses
+                for (int i = 0; i < channels.size(); i++) {
+                    System.out.println("BroadCasting on " + channels.get(i).toString().substring(1));
+                    //do it for all addresses
+                    for (String addr : myIPs) {
+                        try {
+                            System.out.println("-> QC at " + addr + ":" + myport);
+                            broadcast("QC at " + addr + ":" + myport, InetAddress.getByName(channels.get(i).toString().substring(1)));
+                        } catch (IOException e) {
+                            System.out.println("ERROR: " + e.toString());
+                        }
+                    }
+
+                }
+            }
+        }.start();
     }
 
     @FXML
@@ -190,39 +230,92 @@ public class MainController implements Initializable {
         } else {
             connections.clear();
 
-            //do this on new Thread in order not to block UI
-            new Thread() {
-                @Override
-                public void run() {
-
-                    //Find All Broadcast Addresses
-                    System.out.println("STARTING QUERY");
-                    timesince = System.nanoTime() / 1000000000 - timesince;
-                    try {
-                        channels = listAllBroadcastAddresses();
-                    } catch (SocketException e) {
-                        System.out.println("SocketException: " + e.toString());
-                    }
-                    System.out.println("QUERY OVER");
-                    //Broadcast "QC at IP:port" to all Addresses
-                    for (int i = 0; i < channels.size(); i++) {
-                        System.out.println("BroadCasting on " + channels.get(i).toString().substring(1));
-                        //do it for all addresses
-                        for (String addr : myIPs) {
-                            try {
-                                System.out.println("-> QC at " + addr + ":" + myport);
-                                broadcast("QC at " + addr + ":" + myport, InetAddress.getByName(channels.get(i).toString().substring(1)));
-                            } catch (IOException e) {
-                                System.out.println("ERROR: " + e.toString());
-                            }
-                        }
-
-                    }
-                }
-            }.start();
+            broadcast_scan();
         }
 
         //We should log Sys.out/
+    }
+
+    void showSpotlight(Connection c) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Parent root;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("fastSend.fxml"));
+                    Pane temp_root = (Pane)loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("SendFast");
+                    Scene temp_scene = new Scene(temp_root);
+                    stage.setScene(temp_scene);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    scene.setFill(null);
+                    temp_scene.setFill(null);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void updateConnections() {
+        //run broadcast_scan every 3 minutes
+        new Thread() {
+            @Override
+            public void run() {
+                //if Thred.sleep() fails multiple times (5) stop autoscanning
+                byte interruptions = 0;
+                while (true) {
+                    //start scan
+                    broadcast_scan();
+                    //wait for scan to finish
+                    try {
+                        Thread.sleep(1000 * 10);
+                    } catch (InterruptedException e) {
+
+                    }
+                    //update TrayIcon connections
+                    //Add exit option
+                    java.awt.MenuItem exitItem = new java.awt.MenuItem("Exit");
+                    exitItem.addActionListener(event -> {
+                        power();
+                    });
+                    //Add button for each connection
+                    final java.awt.PopupMenu popup = new java.awt.PopupMenu();
+                    for (Connection c : connections) {
+                        //set name to Connection
+                        java.awt.MenuItem openItem = new java.awt.MenuItem(c.getName());
+                        //set font to BOLD
+                        java.awt.Font defaultFont = java.awt.Font.decode(null);
+                        java.awt.Font boldFont = defaultFont.deriveFont(java.awt.Font.BOLD);
+                        openItem.setFont(boldFont);
+                        //Add eventListener to show message box
+                        openItem.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                showSpotlight(c);
+                            }
+                        });
+                        popup.add(openItem);
+                    }
+                    //create and set new Popupmenu
+                    popup.addSeparator();
+                    popup.add(exitItem);
+                    trayIcon.setPopupMenu(popup);
+                    System.out.println("Updated TrayIcon");
+                    try {
+                        Thread.sleep(1000 * 60 * 3);
+                        interruptions = 0;
+                    } catch (InterruptedException e) {
+                        if (interruptions >= 5) {
+                            break;
+                        }
+                        interruptions++;
+                    }
+                }
+            }
+        }.start();
     }
 
     public void send(List<String> filePATHS, boolean toEndAfterwards) {
@@ -477,8 +570,8 @@ public class MainController implements Initializable {
         tray.remove(trayIcon);
         System.exit(0);
     }
-    
-        private void power(boolean a) {
+
+    private void power(boolean a) {
         //halt application
         //server.halt();
         //TCPServer.halt();
@@ -492,21 +585,20 @@ public class MainController implements Initializable {
         boolean instanceRunning = true;
         //try to connect to own socket to see if a connection is possible
         TClient tc = new TClient();
-        try{
-        tc.startConnection(myIPs.get(0), myport);
-        }catch(SocketTimeoutException e){
+        try {
+            tc.startConnection(myIPs.get(0), myport);
+        } catch (SocketTimeoutException e) {
             instanceRunning = false;
             System.out.println("Single instance detected");
         }
-        if(instanceRunning){
+        if (instanceRunning) {
             System.out.println("Multiple Instances of program detected");
             //does the program have CLArguments?
-            if(args.length > 1){
+            if (args.length > 1) {
                 System.out.println(args);
                 //send files after user selects destination
                 send(Arrays.asList(args), true);
-            }
-            else{
+            } else {
                 power(true);
             }
         }
@@ -523,7 +615,7 @@ public class MainController implements Initializable {
         Platform.setImplicitExit(false);
         // sets up the tray icon (using awt code run on the swing thread).
         javax.swing.SwingUtilities.invokeLater(this::addAppToTray);
-        
+
         scene = scene_l;
         stage = s;
         //get all interactables
