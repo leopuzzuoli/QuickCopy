@@ -244,11 +244,13 @@ public class MainController implements Initializable {
                     Parent root;
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("fastSend.fxml"));
                     Pane temp_root = (Pane)loader.load();
+                    FastSendController fsc = loader.getController();
                     Stage stage = new Stage();
                     stage.setTitle("SendFast");
                     Scene temp_scene = new Scene(temp_root);
                     stage.setScene(temp_scene);
                     stage.initStyle(StageStyle.TRANSPARENT);
+                    fsc.send(c,stage);
                     scene.setFill(null);
                     temp_scene.setFill(null);
                     stage.show();
