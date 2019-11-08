@@ -69,7 +69,7 @@ public class MainController implements Initializable {
     long timesince = 0;
     public ThemeInterface theme;
     static private List<Connection> connections = new ArrayList<>();
-    Preferences prefs = Preferences.userRoot().node(this.getClass().getName());
+    Preferences prefs;
     Stage stage;
     public static String os = "Undetected/failure";
     @FXML
@@ -96,8 +96,8 @@ public class MainController implements Initializable {
         if (_os_toDetect.contains("mac")) {
             os = "Mac";
         }
-        prefs.put("flaunch", "false");
 
+        prefs = Preferences.userRoot().node(this.getClass().getName());
         //if first launch
         if (prefs.get("flaunch", "true").equals("true")) {
             System.out.println("First Launch");
@@ -373,19 +373,19 @@ public class MainController implements Initializable {
     @FXML
     void selectBlue() {
         restart_required = true;
-        prefs.put("modern_aqua", "theme");
+        prefs.put("theme", "modern_aqua");
     }
 
     @FXML
     void selectYellow() {
         restart_required = true;
-        prefs.put("modern_yellow", "theme");
+        prefs.put("theme", "modern_yellow");
     }
 
     @FXML
     void selectGreen() {
         restart_required = true;
-        prefs.put("modern_green", "theme");
+        prefs.put("theme", "modern_green");
     }
 
     @FXML
@@ -397,7 +397,7 @@ public class MainController implements Initializable {
         String new_username = nameField.getText();
         if (!new_username.equals("")) {
             new_username = Base64.getEncoder().encodeToString(new_username.getBytes());
-            prefs.put(new_username, "username");
+            prefs.put("username", new_username);
         }
         power();
     }
