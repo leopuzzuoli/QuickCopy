@@ -20,6 +20,7 @@ package quickcopy;
  * @author Chipleo
  */
 public class Interaction {
+    
     public Interaction(){
         
     }
