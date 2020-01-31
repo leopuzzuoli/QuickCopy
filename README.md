@@ -1,4 +1,4 @@
-˘<h1 align="center">🏹 QuickCopy 💾</h1>
+<h1 align="center">🏹 QuickCopy 💾</h1>
 <p align="center">A universal application that allows for easy and frictionless data transfer between devices on a network</p>
 
 <p align="center">
