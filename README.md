@@ -1,4 +1,4 @@
-<h1 align="center">🏹 QuickCopy 💾</h1>
+˘<h1 align="center">🏹 QuickCopy 💾</h1>
 <p align="center">A universal application that allows for easy and frictionless data transfer between devices on a network</p>
 
 <p align="center">
@@ -34,6 +34,20 @@ Apple has clearly put thought into this problem and came up with AirDrop, but in
 <p align="center"><h4 align = "left"> Installation</h4></p>
 <p> The alpha version for QuickCopy in available under the releases tab. To be notified on full-release star or watch this project. Otherwise you can download and compile the latest source code</p>
 
+<p align="center"><h4 align = "left"> Why QuickCopy</h4></p>
+QuickCopy is built to run natively on all desktop operating systems and features native notifications</br></br>
+![native mac notifications](UI Designs/native_notification_mac.png)
+</br></br>
+and a beautiful modern customisable design </br></br>
+![desktop design](UI Designs/desktop_design.png)
+</br></br>for mobile and desktop </br></br>
+![mobile design](UI Designs/mobile.png)(WIP)
+</br></br>
+But most importantly QuickCopy features seamless implementation into you daily workflow allowing you to  copy data between linked devices via shared clipboard or by using the fast send option in your PC's status bar.</br></br>
+So what are you waiting for. Download QuickCopy now!
+<!--
+![fast sent](UI Designs/)
+-->
 <p align="center"><h4 align = "left"> Status</h4></p>
 <p>
 Design desktop app ✓</br>
