@@ -36,12 +36,12 @@ Apple has clearly put thought into this problem and came up with AirDrop, but in
 
 <p align="center"><h4 align = "left"> Why QuickCopy</h4></p>
 QuickCopy is built to run natively on all desktop operating systems and features native notifications</br></br>
-![native mac notifications](UI Designs/native_notification_mac.png)
+![native mac notifications](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/native_notification_mac.png)
 </br></br>
 and a beautiful modern customisable design </br></br>
-![desktop design](UI Designs/desktop_design.png)
+![desktop design](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/desktop_design.png)
 </br></br>for mobile and desktop </br></br>
-![mobile design](UI Designs/mobile.png)(WIP)
+![mobile design](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/mobile.png)(WIP)
 </br></br>
 But most importantly QuickCopy features seamless implementation into you daily workflow allowing you to  copy data between linked devices via shared clipboard or by using the fast send option in your PC's status bar.</br></br>
 So what are you waiting for. Download QuickCopy now!
