@@ -28,20 +28,25 @@ Apple has clearly put thought into this problem and came up with AirDrop, but in
 </p>
 <p> QuickCopy is meant to fix that. It is the solution for everyone. Compatible with all devices and using WIFI rather than Bluetooth it finds all enabled devices on your network in a heartbeat, and simpy allows you to send links and files without much hassle.
 
-
-> <b>Note</b>: This product is still in alpha stage, one or more features may not work properly yet. See more under status tab.
+><b>Note</b>: This product is still in alpha stage, one or more features may not work properly yet. See more under status tab.
 
 <p align="center"><h4 align = "left"> Installation</h4></p>
 <p> The alpha version for QuickCopy in available under the releases tab. To be notified on full-release star or watch this project. Otherwise you can download and compile the latest source code</p>
 
 <p align="center"><h4 align = "left"> Why QuickCopy</h4></p>
 QuickCopy is built to run natively on all desktop operating systems and features native notifications</br></br>
+
 ![native mac notifications](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/native_notification_mac.png)
+
 </br></br>
 and a beautiful modern customisable design </br></br>
+
 ![desktop design](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/desktop_design.png)
+
 </br></br>for mobile and desktop </br></br>
+
 ![mobile design](https://raw.githubusercontent.com/k783s4/QuickCopy/master/UI%20Designs/mobile.png)(WIP)
+
 </br></br>
 But most importantly QuickCopy features seamless implementation into you daily workflow allowing you to  copy data between linked devices via shared clipboard or by using the fast send option in your PC's status bar.</br></br>
 So what are you waiting for. Download QuickCopy now!
